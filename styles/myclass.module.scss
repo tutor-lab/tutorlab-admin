@@ -1,0 +1,80 @@
+.whitepage {
+  // position: fixed;
+  // top: 0;
+  // left: 50%;
+  // transform: translateX(-50%);
+  background-color: white;
+  width: 375px;
+  height: 100px;
+  margin: 0 auto;
+  .title {
+    font-weight: 800;
+    font-size: 18px;
+    text-align: center;
+    padding-top: 22px;
+  }
+
+  .selected,
+  .unselected {
+    width: 187px;
+    font-weight: 700;
+    font-size: 15px;
+    text-align: center;
+    float: left;
+  }
+
+  .selected {
+    color: #3568ee;
+    border-bottom: 2px solid #3568ee;
+  }
+
+  .unselected {
+    color: #949bad;
+    border: none;
+  }
+}
+
+.graypage {
+  background-color: #f3f3f3;
+  width: 375px;
+  height: 2000px;
+  margin: 0 auto;
+  .smallheadingB,
+  .smallheadingM {
+    font-size: 13px;
+    color: #949bad;
+    margin: 0;
+    padding: 16px 21px;
+  }
+  .smallheadingB {
+    font-weight: 700;
+  }
+  .smallheadingM {
+    font-weight: 400;
+  }
+  .fixedTab {
+    position: fixed;
+    bottom: -15px;
+  }
+  .add {
+    margin: 0 auto;
+    width: 330px;
+    height: 141px;
+    border-radius: 18px;
+    box-shadow: 0 1px 5px 0 #949bad;
+    background-color: white;
+    p {
+      text-align: center;
+      margin: 0;
+      padding-top: 27px;
+      margin-bottom: 15px;
+      color: #3568ee;
+    }
+    .pluspic {
+      text-align: center;
+    }
+    // input {
+    //   display: none;
+    // }
+  }
+}

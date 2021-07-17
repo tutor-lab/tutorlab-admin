@@ -1,0 +1,86 @@
+.classCard {
+  width: 330px;
+  height: 254px;
+  border-radius: 10px;
+  box-shadow: 0 1px 5px 0 #949bad;
+  background-color: white;
+  margin-bottom: 24px;
+  margin-left: auto;
+  margin-right: auto;
+  .classCardImage {
+    position: relative;
+    .classCardImg {
+      margin: 0;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+    }
+    .onoffMethod {
+      position: absolute;
+      top: 9px;
+      right: 12px;
+      .onoff {
+        font-size: 12px;
+        border: 0.5px solid white;
+        border-radius: 18px;
+        padding: 4px 8px;
+        color: white;
+        float: left;
+        margin-left: 12px;
+      }
+    }
+  }
+
+  .classCardExplanation {
+    padding: 16px;
+    position: relative;
+    h1 {
+      font-size: 15px;
+      font-weight: 700;
+      color: #283237;
+      margin-top: 0;
+      margin-bottom: 8px;
+    }
+
+    .def,
+    .tag {
+      font-size: 13px;
+      font-weight: 400;
+      color: #949bad;
+    }
+
+    .def {
+      margin-bottom: 18px;
+    }
+
+    .tag {
+      position: absolute;
+      right: 16px;
+      bottom: 0;
+    }
+
+    span {
+      display: block;
+    }
+
+    .likes {
+      position: relative;
+      left: 0px;
+      float: left;
+      overflow: hidden;
+      .heart {
+        padding: 0px;
+        padding-top: 2px;
+        float: left;
+        border: none;
+        background-color: white;
+      }
+      .likeCnt {
+        float: left;
+        font-size: 13px;
+        font-weight: 400;
+        color: #949bad;
+        margin-left: 8px;
+      }
+    }
+  }
+}
