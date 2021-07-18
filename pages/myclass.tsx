@@ -1,4 +1,5 @@
 import Image from "next/image";
+import router from "next/router";
 import styles from "../styles/myclass.module.scss";
 import ClassCard from "./classcard";
 import BottomTab from "./bottomtab";
@@ -8,12 +9,20 @@ const MyClass = ({}) => {
     <>
       <div className={styles.whitepage}>
         <h1 className={styles.title}>튜터</h1>
-        <a href="/myclass">
-          <h2 className={styles.selected}>내 강의</h2>
-        </a>
-        <a href="/classposted">
-          <h2 className={styles.unselected}>강의 등록</h2>
-        </a>
+        <button
+          type="button"
+          className={styles.selected}
+          onClick={() => router.push("/myclass")}
+        >
+          내 강의
+        </button>
+        <button
+          type="button"
+          className={styles.unselected}
+          onClick={() => router.push("/classposted")}
+        >
+          강의 등록
+        </button>
       </div>
       <div className={styles.graypage}>
         <h3 className={styles.smallheadingB}>등록한 강의 총 4개</h3>

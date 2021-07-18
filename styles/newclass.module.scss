@@ -1,6 +1,110 @@
-.title {
-  font-size: 16px;
-  font-weight: 700;
-  text-align: center;
-  padding-top: 22px;
+.whitepage {
+  background-color: white;
+  width: 375px;
+  height: 80px;
+  margin: 0 auto;
+  .title {
+    font-size: 16px;
+    font-weight: 700;
+    text-align: center;
+    padding-top: 22px;
+  }
+
+  .selected,
+  .unselected {
+    width: 102px;
+    margin: 0;
+    margin-left: 10px;
+    margin-right: 10px;
+    font-weight: 700;
+    font-size: 15px;
+    text-align: center;
+    float: left;
+  }
+  .selected {
+    color: #3568ee;
+    border-bottom: 2px solid #3568ee;
+  }
+
+  .unselected {
+    color: #949bad;
+    border: none;
+  }
+}
+
+.graypage {
+  background-color: #f3f3f3;
+  width: 375px;
+  height: 729px;
+  margin: 0 auto;
+  padding: 26px 24px 31px 21px;
+  .question {
+    font-size: 13px;
+    font-weight: 400;
+    color: #283237;
+    margin: 0;
+    margin-bottom: 11px;
+  }
+
+  .add {
+    width: 330px;
+    height: 141px;
+    border-radius: 10px;
+    box-shadow: 0 1px 5px 0 #949bad;
+    background-color: white;
+    margin-bottom: 14px;
+    .pluspic {
+      padding-top: 60px;
+      text-align: center;
+    }
+    .placeholdertext {
+      font-size: 15px;
+      color: #949bad;
+      font-weight: 400;
+      text-align: center;
+    }
+  }
+
+  input {
+    display: none;
+  }
+
+  .inputBox {
+    display: block;
+    width: 330px;
+    height: 68px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 1px 5px 0 #949bad;
+    padding: 11px 17px;
+    border: none;
+    outline: none;
+    resize: none;
+    margin-bottom: 4px;
+  }
+
+  .example {
+    font-size: 13px;
+    color: #949bad;
+    font-weight: 400;
+    margin: 0;
+    margin-bottom: 17px;
+    padding-left: 17px;
+  }
+}
+.next {
+  position: fixed;
+  color: white;
+  background-color: #2354d5;
+  width: 375px;
+  height: 52px;
+  left: 50%;
+  transform: translate(-50%, -30%);
+  border: none;
+}
+.fixedTab {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -15px;
 }
