@@ -1,4 +1,5 @@
 import Image from "next/image";
+import router from "next/router";
 import styles from "../styles/myclass.module.scss";
 import ClassCard from "./classcard";
 import BottomTab from "./bottomtab";
@@ -8,35 +9,42 @@ const ClassPosted = ({}) => {
     <>
       <div className={styles.whitepage}>
         <h1 className={styles.title}>튜터</h1>
-        <a href="/myclass">
-          <h2 className={styles.unselected}>내 강의</h2>
-        </a>
-        <a href="/classposted">
-          <h2 className={styles.selected}>강의 등록</h2>
-        </a>
+        <button
+          type="button"
+          className={styles.unselected}
+          onClick={() => router.push("/myclass")}
+        >
+          내 강의
+        </button>
+        <button
+          type="button"
+          className={styles.selected}
+          onClick={() => router.push("/classposted")}
+        >
+          강의 등록
+        </button>
       </div>
       <div className={styles.graypage}>
         <div className={styles.new}>
           <h3 className={styles.smallheadingB}>새로운 강의 등록하기</h3>
-          {/* <label htmlFor="newClass"> */}
-          <a href="/newclass">
-            <div className={styles.add}>
-              <p>
-                강의를 등록하고
-                <br /> 더 많은 튜티들을 만나보세요!
-              </p>
-              <div className={styles.pluspic}>
-                <Image
-                  src="/../public/images/plus.png"
-                  width="16px"
-                  height="16px"
-                  alt=""
-                />
-              </div>
-              {/* <input type="file" id="newClass"></input> */}
+          <button
+            type="button"
+            className={styles.add}
+            onClick={() => router.push("/newclass")}
+          >
+            <p>
+              강의를 등록하고
+              <br /> 더 많은 튜티들을 만나보세요!
+            </p>
+            <div className={styles.pluspic}>
+              <Image
+                src="/../public/images/plus.png"
+                width="16px"
+                height="16px"
+                alt=""
+              />
             </div>
-          </a>
-          {/* </label> */}
+          </button>
         </div>
         <div className={styles.testing}>
           <h3 className={styles.smallheadingM}>
