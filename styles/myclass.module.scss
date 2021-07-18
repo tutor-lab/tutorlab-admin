@@ -1,8 +1,4 @@
 .whitepage {
-  // position: fixed;
-  // top: 0;
-  // left: 50%;
-  // transform: translateX(-50%);
   background-color: white;
   width: 375px;
   height: 100px;
@@ -41,7 +37,7 @@
 .graypage {
   background-color: #f3f3f3;
   width: 375px;
-  height: 2000px;
+  padding-bottom: 120px;
   margin: 0 auto;
   .smallheadingB,
   .smallheadingM {
