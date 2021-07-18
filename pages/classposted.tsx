@@ -3,6 +3,7 @@ import router from "next/router";
 import styles from "../styles/myclass.module.scss";
 import ClassCard from "./classcard";
 import BottomTab from "./bottomtab";
+import Data from "../data.json";
 
 const ClassPosted = ({}) => {
   return (
@@ -48,10 +49,15 @@ const ClassPosted = ({}) => {
         </div>
         <div className={styles.testing}>
           <h3 className={styles.smallheadingM}>
-            심사 중인 강의 2개(최대 24시간 소요)
+            심사 중인 강의 {Data.testingcnt}개(최대 24시간 소요)
           </h3>
-          <ClassCard />
-          <ClassCard />
+          {Data.classes.map((data, i) => {
+            return data.testing ? (
+              <ClassCard data={data} key={i}></ClassCard>
+            ) : (
+              <></>
+            );
+          })}
         </div>
         {/* 실제로 데이터 받아올 땐 <Row>map으로 처리</Row> */}
         <div className={styles.fixedTab}>

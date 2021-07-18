@@ -3,8 +3,12 @@ import router from "next/router";
 import styles from "../styles/myclass.module.scss";
 import ClassCard from "./classcard";
 import BottomTab from "./bottomtab";
+import Data from "../data.json";
 
 const MyClass = ({}) => {
+  for (let i = 0; i < Data.classes.length; i++) {
+    console.log(typeof Data.classes[i].tag);
+  }
   return (
     <>
       <div className={styles.whitepage}>
@@ -25,13 +29,16 @@ const MyClass = ({}) => {
         </button>
       </div>
       <div className={styles.graypage}>
-        <h3 className={styles.smallheadingB}>등록한 강의 총 4개</h3>
-        <ClassCard />
-        {/* 링크->세부 페이지로! */}
-        <ClassCard />
-        <ClassCard />
-        <ClassCard />
-        {/* 실제로 데이터 받아올 땐 <Row>map으로 처리</Row> */}
+        <h3 className={styles.smallheadingB}>
+          등록한 강의 총 {Data.registercnt}개
+        </h3>
+        {Data.classes.map((data, i) => {
+          return data.register ? (
+            <ClassCard data={data} key={i}></ClassCard>
+          ) : (
+            <></>
+          );
+        })}
         <div className={styles.fixedTab}>
           <BottomTab />
         </div>
