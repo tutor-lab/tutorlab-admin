@@ -1,0 +1,113 @@
+.box {
+    margin: 0 auto;
+    text-align: center;
+}
+
+.header{
+    width: 100% !important;
+    height: 12vh !important;
+    padding-top: 20px;
+    padding-bottom: 20px !important;
+    color: #808080;
+    .icon {
+        justify-content: left !important;
+        right:0 !important;
+    }
+}
+
+.form {
+    margin: 0 auto;
+    display: flex;
+    align-items: center !important;
+    justify-content: center !important;
+    flex: 1;
+    height: 100%;
+}
+
+
+
+.label {
+    //padding-left: 60px;
+    //text-align: left !important;
+    color: dimgrey;
+    font-weight: 400;
+}
+
+
+.row {
+    margin: 0 auto;
+    display: flex;
+    align-items: center !important;
+    justify-content: center !important;
+    flex: 1;
+    padding-top: 10px !important; 
+    padding-bottom: 5px !important; 
+}
+
+.row2 {
+    margin: 0 auto;
+    display: flex;
+    align-items: center !important;
+    justify-content: center !important;
+    padding-top: 10px !important; 
+    padding-bottom: 5px !important; 
+}
+
+
+.scrollbar {
+    width: 100% !important;
+    max-height: 80vh !important;
+    z-index: 11;
+}
+
+.upload {
+    text-align: left !important;
+    width: 85% !important;
+    label {
+        padding-left: 30px !important;
+    }
+}
+
+.button {
+    background:#0080ff;
+    width: 100%;
+    color: white;
+    position: fixed;
+    bottom: 0;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    font-size: 20px;
+    border-radius: 5px;
+}
+
+.input{
+    padding-left: 30px !important;
+    padding-top: 15px !important;
+    padding-bottom: 15px !important;
+    width: 85% !important;
+    background-color: #f0f0f0 !important;
+    border: 0 !important;
+    outline: 0 !important;
+}
+
+.btnwrapper {
+    margin-top: 10px !important;
+}
+
+.plus {
+    margin: 0 auto;
+    width:35px;
+    height:35px;
+    border-radius: 50%;
+    color: white;
+    text-align:center;
+    background:#0080ff;
+    font-size:20px;
+    font-weight:bold;
+    padding-top: 1px;
+}
+
+.plus:active{
+    background: white;
+    color: #0080ff;
+  }
