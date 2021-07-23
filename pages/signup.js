@@ -162,7 +162,7 @@ const SignUp = () => {
                 </Row>
                 <div id='mobileCheck'></div>
                 <Row>
-                    <Col xs={12} md={6} className={styles.form}>
+                    <Col xs={12} className={styles.form}>
                         <div className={styles.button} onClick={() => {submitAndNext()}}>다음</div>
                     </Col>
                 </Row>

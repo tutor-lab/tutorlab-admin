@@ -1,16 +1,14 @@
+
 import React, {useState, useEffect, useReducer} from 'react';
-import {Container, Row, Col, Label, Input, InputGroup, Button} from 'reactstrap';
+import {Container, Row, Col, Label, InputGroup, Input} from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {BsChevronLeft} from 'react-icons/bs';
+import {CgMathPlus} from 'react-icons/cg';
 import styles from "../styles/signup2.module.scss";
 import Router from 'next/router';
 import PerfectScrollbar from 'react-perfect-scrollbar'
 import 'react-perfect-scrollbar/dist/css/styles.css';
 import { useRouter, withRouter } from 'next/router';
-import { Select, CaretIcon, ModalCloseButton  } from 'react-responsive-select';
-import 'react-responsive-select/dist/react-responsive-select.css';
-//import { gql, useMutation } from '@apollo/client';
-
 
 const ageOptions = [
     {value: '', text: '나이'},
@@ -32,44 +30,60 @@ const addressOptions = [
     {value: '경기', text: '경기'}
 ]
 
-// const MUATTION = gql`
-//     mutation($file: Upload!) {
-//         uploadFile(file: $file) {
-//             success
-//         }
-//     }
-//     `;
-
 const SignUp2 = () => {
     const router = useRouter();
-    
-    const [age, setAge] = useState();
-    const [sex, setSex] = useState();
-    const [address, setAddress] = useState();
-
-    const [highestLvl, setHighestLvl] = useState();
-    const [school, setSchool] = useState();
-    const [major, setMajor] = useState();
-
-    const [ certificateList, setCertificateList ] = useState([/*{value: ''}*/]);
-    const [ careerList, setCareerList ] = useState([{value: ''}]);
-
     useEffect(() => {
         console.log(`name props=${router.query.name}`);
     }, [router]);
 
-    useEffect(() => {
-        console.log(`age=${age}`);
-    }, [age]);
+    const [ age, setAge ] = useState();
+    const [ sex, setSex ] = useState();
+    const [ address, setAddress]  = useState();
+
+    const [ highestLvl, setHighestLvl ] = useState();
+    const [ school, setSchool ] = useState();
+    const [ major, setMajor ] = useState();
+
+    const [ certificateList, setCertificateList ] = useState([{value: undefined}]);
+    const [ careerList, setCareerList ] = useState([{value: undefined}]);
 
     useEffect(() => {
-        console.log(`sex=${sex}`);
-    }, [sex]);
+        console.log(`certificateList=${certificateList}`)
+    }, [certificateList]);
 
     useEffect(() => {
-        console.log(`address=${address}`);
-    }, [address]);
+        console.log(`careerList=${careerList}`)
+    }, [careerList]);
 
+    const addCareer = () => {
+        setCareerList(careerList.concat([{value: undefined}]));
+    }
+
+    const addCertificate = () => {
+        setCertificateList(certificateList.concat([{value: undefined}]));
+    }
+
+    const setCertificateValue = (e) => {
+        const { id, value } = e.target;
+        console.log(`id=${id} / value=${value}`)
+        let copyList = [...certificateList];
+        copyList[Number(id.split('-')[1])].value = value;
+
+        setCertificateList(copyList);
+    }
+
+    const setCareerValue = (e) => {
+        const { id, value } = e.target;
+        console.log(`id=${id} / value=${value}`)
+        let copyList = [...careerList];
+        copyList[Number(id.split('-')[1])].value = value;
+        console.log(copyList[Number(id.split('-')[1])].value);
+
+        setCareerList(copyList);
+    }
+
+    let count = 0;
+    //Warning: Each child in a list should have a unique "key" prop. 계속 뜨는데 어디에 더 key를 줘야 될지 모르게뜸...
     return(
         <div className={styles.box}>
             <Container fluid>
@@ -84,323 +98,168 @@ const SignUp2 = () => {
                 <Row>
                     <Col xs={12}>
                         <PerfectScrollbar className={styles.scrollbar}>
-                            <Row>
-                                <div className={styles.label}>
+                            <Row className={styles.label_wrapper}>
+                                <Col  xs='12' sm='12' md ='4' className={styles.label}>
                                     <Label for='basic-info'><b>{router.query.name}</b> 튜터님의 기본 정보를 입력해주세요.</Label>
-                                </div>
-                                <BasicInfo setAddress = {setAddress} setAge = {setAge} setSex = {setSex}/>
+                                </Col>
                             </Row>
-                            <br/>
-                            <Row>
-                                <div className={styles.label}>
+                            <Row className='mb-2'>
+                                <Col xs='12' sm='12' md ='4' className={styles.halfgroup}>
+                                    <InputGroup className={styles.input_group}>
+                                        <select name='age'>
+                                            {ageOptions.map((e, i) => {
+                                                if(e.value==='') {
+                                                    return <option key={`age-${i}`} value={e.value} defaultChecked>{e.text}</option>
+                                                } else return <option key={i} value={e.value}>{e.text}</option>
+                                            })}
+                                        </select>
+                                        <div className={styles.space}></div>
+                                        <select name='sex'>
+                                            {sexOptions.map((e, i) => {
+                                                if(e.value==='') {
+                                                    return <option key={`sex-${i}`} value={e.value} defaultChecked>{e.text}</option>
+                                                } else return <option key={i} value={e.value}>{e.text}</option>
+                                            })}
+                                        </select>
+                                    </InputGroup>
+                                </Col>
+                            </Row>
+                            <Row className='mb-4'>
+                                <Col xs='12' sm='12' md ='4' className={styles.formgroup}>
+                                    <select name='address'>
+                                        {addressOptions.map((e, i) => {
+                                            if(e.value==='') {
+                                                return <option key={`address-${i}`} value={e.value} defaultChecked>{e.text}</option>
+                                            } else return <option key={`address-${i}`} value={e.value}>{e.text}</option>
+                                        })}
+                                    </select>
+                                </Col>
+                            </Row>
+                            <Row className={styles.label_wrapper}>
+                                <Col  xs='12' sm='12' md ='4' className={styles.label}>
                                     <Label for='education'>학력을 입력해주세요.</Label>
-                                </div>
-                                <Education setHighestLvl={setHighestLvl} setSchool={setSchool} setMajor={setMajor}/>
+                                </Col>
                             </Row>
-                            <br/>
-                            <Row>
-                                <div className={styles.label}>
-                                    <Label for='career'>자격증/교육 경력을 입력해주세요.(선택)</Label>
-                                </div>
-                                <Career certificateList={certificateList} careerList={careerList} setCareerList={setCareerList} setCertificateList={setCertificateList}/>
+                            <Row className='mt-1 mb-4'>
+                                <Col xs='12' sm='12' md ='4' className={styles.formgroup}>
+                                    <input type='text' id='id' name='id' placeholder='최종 학력'/>
+                                    <div className='mt-2'/>
+                                    <input type='text' id='school' name='school' placeholder='학교'/>
+                                    <div className='mt-2'/>
+                                    <input type='text' id='major' name='major' placeholder='전공'/>
+                                </Col>
                             </Row>
-                            <br/>
-                            <Row>
-                                <div className={styles.label}>
-                                    <Label for='career'>추가 입력 사항(선택)</Label>
-                                </div>
-                                <AdditionalInfo/>
+                            <Row className={styles.label_wrapper}>
+                                <Col  xs='12' sm='12' md ='4' className={styles.label}>
+                                    <Label for='career'>자격증/교육 경력을 입력해주세요. (선택)</Label>
+                                </Col>
                             </Row>
-                            <br/>
-                            <Row>
-                                <div className={styles.label}>
-                                    <Label for='file'>입력한 내용을 인증할 수 있는 첨부파일을 업로드 해주세요.</Label>
-                                </div>
-                                <FileUpload/>
+                            <Row className='mt-1 mb-4'>
+                                <Col xs='12' sm='12' md ='4' className={styles.formgroup}>
+                                    {certificateList.length > 0 && certificateList.map((e, i) => {
+                                        if(i == certificateList.length - 1) {
+                                            return (
+                                            <>
+                                                <form key={`form1-${i}`} className={styles.inputwrapper}>
+                                                    <input 
+                                                        key={`certificate-${i}`} 
+                                                        type='text' 
+                                                        id={`certificate-${i}`} 
+                                                        placeholder='자격증' 
+                                                        value={e.value}
+                                                        onChange={(e) => {setCertificateValue(e)}}/>
+                                                    <div className={styles.plus} onClick={() => {addCertificate()}}> + </div>
+                                                </form>
+                                                <div key={count++} className='mt-2'/>
+                                            </>
+                                            );
+                                        } else {
+                                            return (
+                                            <>
+                                                <form key={`form1-${i}`}  className={styles.inputwrapper}>
+                                                    <input 
+                                                        key={`certificate-${i}`} 
+                                                        type='text' 
+                                                        id={`certificate-${i}`} 
+                                                        placeholder='자격증' 
+                                                        value={e.value}
+                                                        onChange={(e) => {setCertificateValue(e)}}
+                                                        />
+                                                </form>
+                                                <div key={count++} className='mt-2'/>
+                                            </>
+                                            );
+                                        }
+                                    })}
+                                    <div className='mt-2'/>
+                                    {careerList.length > 0 && careerList.map((e,i) => {
+                                        if(i == careerList.length - 1) {
+                                            return (
+                                            <>
+                                                <form key={`form2-${i}`} className={styles.inputwrapper}>
+                                                    <input 
+                                                        key={`career-${i}`} 
+                                                        type='text' 
+                                                        id={`career-${i}`} 
+                                                        name='career' 
+                                                        placeholder='경력/기간' 
+                                                        value={e.value}
+                                                        onChange={(e) => {setCareerValue(e)}}
+                                                        />
+                                                    <div className={styles.plus} onClick={() => {addCareer()}}> + </div>
+                                                </form> 
+                                                <div key={count++} className='mt-2'/>
+                                            </>
+                                            )
+                                        } else {
+                                            return (
+                                            <>
+                                                <form key={`form2-${i}`} className={styles.inputwrapper}>
+                                                    <input 
+                                                        key={`career-${i}`} 
+                                                        type='text' 
+                                                        id={`career-${i}`} 
+                                                        name='career' 
+                                                        placeholder='경력/기간' 
+                                                        value={e.value}
+                                                        onChange={(e) => {setCareerValue(e)}}
+                                                        />
+                                                </form>
+                                                <div key={count++} className='mt-2'/>
+                                            </>
+                                            );
+                                        }
+                                    })}
+                                </Col>
+                            </Row>
+                            <Row className={styles.label_wrapper}>
+                                <Col  xs='12' sm='12' md ='4' className={styles.label}>
+                                    <Label for='additional-info'>추가 입력 사항 (선택)</Label>
+                                </Col>
+                            </Row>
+                            <Row className='mt-1 mb-4'>
+                                <Col xs='12' sm='12' md ='4' className={styles.formgroup}>
+                                    <input type='text' id='graduate-school' name='graduate-school' placeholder='대학원'/>
+                                    <div className='mt-2'/>
+                                    <input type='text' id='graduate-major' name='graduate-major' placeholder='대학원 전공'/>
+                                </Col>
+                            </Row>
+                            <Row className={styles.label_wrapper}>
+                                <Col  xs='12' sm='12' md ='4' className={styles.label}>
+                                    <Label for='basic-info'>입력한 내용을 인증할 수 있는 첨부파일을 업로드 해주세요.</Label>
+                                </Col>
+                             {/* 여긴 아직 작업하지 말라고 함ㅎㅅㅎ */}
                             </Row>
                         </PerfectScrollbar>
                     </Col>
                 </Row>
                 <Row>
-                    <Col xs={12} md={6} className={styles.form}>
+                    <Col xs={12} className={styles.form}>
                         <div className={styles.button} onClick={() => {alert('click')}}>완료</div>
                     </Col>
                 </Row>
             </Container>
         </div>
-    )
-}
-
-
-const BasicInfo = ({setAge, setSex, setAddress}) => {
-    
-    return (
-        <div>
-            <Row className={styles.row}>
-                <Col xs={5} sm={2} md={2}>
-                    <Select 
-                        name='age'
-                        modalCloseButton={<ModalCloseButton/>}
-                        options={ageOptions}
-                        caretIcon={<CaretIcon/>}
-                        selectedValue=''
-                        onChange={(e) => {setAge(e.value)}}
-                    />
-                </Col>
-                <Col xs={5} sm={2} md={2}>
-                    <Select 
-                        name='sex'
-                        modalCloseButton={<ModalCloseButton/>}
-                        options={sexOptions}
-                        caretIcon={<CaretIcon/>}
-                        selectedValue=''
-                        onChange={(e) => {setSex(e.value)}}
-                    />
-                </Col>
-            </Row>
-            <Row className={styles.row}>
-                <Col xs={10} sm={4} md={4}>
-                    <Select 
-                        name='address'
-                        modalCloseButton={<ModalCloseButton/>}
-                        options={addressOptions}
-                        caretIcon={<CaretIcon/>}
-                        selectedValue=''
-                        onChange={(e) => {setAddress(e.value)}}
-                    />
-                </Col>
-            </Row>
-        </div>
-    )
-}
-
-const Education = ({setHighestLvl, setSchool, setMajor}) => {
-    return (
-        <>
-        <Row className={styles.row2}>
-            <Col xs={12} sm={4} md={4} className={styles.form}>
-                <Input 
-                    className={styles.input}
-                    id='highestLvl'
-                    type='text' 
-                    placeholder='최종 학력' 
-                    onChange={(event) => {setHighestLvl(event.target.value)}}
-                />
-                
-            </Col>
-        </Row>
-        <Row className={styles.row2}>
-            <Col xs={12} sm={4} md={4} className={styles.form}>
-                <Input 
-                    className={styles.input}
-                    id='school'
-                    type='text' 
-                    placeholder='학교' 
-                    onChange={(event) => {setSchool(event.target.value)}}
-                />
-                
-            </Col>
-        </Row> 
-        <Row className={styles.row2}>
-            <Col xs={12} sm={4} md={4} className={styles.form}>
-                <Input 
-                    className={styles.input}
-                    id='major'
-                    type='text' 
-                    placeholder='전공' 
-                    onChange={(event) => {setMajor(event.target.value)}}
-                />
-                
-            </Col>
-        </Row>
-        </>
-    )
-}
-
-const Career = ({ certificateList ,setCertificateList, careerList, setCareerList}) => {
-
-    useEffect(() => {
-        console.log(`certificateList=${certificateList}`)
-    }, [certificateList]);
-
-    useEffect(() => {
-        console.log(`careerList=${careerList}`)
-    }, [careerList]);
-    
-    const addCertificate = () => {
-        //alert('click');
-        setCertificateList(certificateList.concat([{value: ''}]));
-    }
-    
-    const addCareer = () => {
-        setCareerList(careerList.concat([{value: ''}]));
-    }
-    
-    const setCertificateValue = (e) => {
-        // const { id, value } = e.target;
-        // let copyList = [...certificateList];
-        // copyList[id].value = value;
-        
-        // setCertificateList(copyList);
-    }
-
-    
-    const setCareerValue = (e) => {
-        const { id, value } = e.target;
-        let copyList = [...careerList];
-        copyList[id].value = value;
-        
-        setCareerList(copyList);
-    }
-
-    const CertificateInputList = ({certificateList, onChange}) => {
-        return(
-            <>
-                {certificateList.lenth > 0 && certificateList.map((e, i) => {
-                    <CertificateInput key={i} value={''} id={i} onChange={setCertificateValue}/>
-                })}
-            </>
-        );
-    }
-    //이 함수가 list를 맵으로 렌더링한 컴포넌트 return 해줘요 위에 보시면 있구용..타고 들어가면
-    const renderCertificateInput = (certificateList, setCertificateValue) => {
-        return <CertificateInputList certificateList={certificateList} onChange={setCertificateValue}/>
-    }
-    return (
-        <>
-        <div className={styles.btnwrapper}>
-            <div className={styles.plus} onClick={ addCertificate }> + </div>
-        </div>
-        {/* <Row className={styles.row2}>
-            <Col xs={12} sm={4} md={4} className={styles.form}>
-                <Input 
-                    className={styles.input}
-                    id='certificate'
-                    type='text' 
-                    placeholder='자격증' 
-                    onChange={(event) => {console.log(event.target.value)}}
-                />
-                
-            </Col>
-        </Row> */}
-        {/* 밑에 함수가 렌더링 하는 함수인데 렌더링이 안되용... */}
-        {certificateList.lenth > 0 &&  renderCertificateInput(certificateList, setCertificateValue)}
-        <Row className={styles.row2}>
-            <Col xs={12} sm={4} md={4} className={styles.form}>
-                <Input 
-                    className={styles.input}
-                    id='career'
-                    type='text' 
-                    placeholder='경력/기간' 
-                    onChange={(event) => {console.log(event.target.value)}}
-                />
-                
-            </Col>
-        </Row> 
-        </>
-    )
-}
-
-
-//결론적으로 자격증 인풋이랑 같은데 컴포넌트로 빼놨구요..
-const CertificateInput = ({value, id, onChange}) => {
-    return (
-        <Row className={styles.row2}>
-            <Col xs={12} sm={4} md={4} className={styles.form}>
-                <Input 
-                    className={styles.input}
-                    id={id}
-                    type='text' 
-                    value={ value || ''}
-                    placeholder='자격증' 
-                    onChange={(e) => {onChange(e)}}
-                />
-            </Col>
-        </Row>
     );
 }
-
-const AdditionalInfo = () => {
-    return (
-        <>
-        <Row className={styles.row2}>
-            <Col xs={12} sm={4} md={4} className={styles.form}>
-                <Input 
-                    className={styles.input}
-                    id='graduate-school'
-                    type='text' 
-                    placeholder='대학원' 
-                    onChange={(event) => {console.log(event.target.value)}}
-                />
-                
-            </Col>
-        </Row>
-        <Row className={styles.row2}>
-            <Col xs={12} sm={4} md={4} className={styles.form}>
-                <Input 
-                    className={styles.input}
-                    id='graduate-major'
-                    type='text' 
-                    placeholder='대학원 전공' 
-                    onChange={(event) => {console.log(event.target.value)}}
-                />
-                
-            </Col>
-        </Row> 
-        </>
-    )
-}
-
-const FileUpload = () => {
-    // const [mutate] = useMutation(MUATTION);
-
-    // function onChange({
-    //     target: {
-    //       validity,
-    //       files: [file],
-    //     },
-    //   }) {
-    //     if (validity.valid) mutate({ variables: { file } });
-    //   }
-
-      return (
-          <>
-          {/* <Row className={styles.row2}>
-            <Col xs={12} sm={4} md={4} className={styles.form}>
-                <div className={styles.upload}>
-                    <div className="input-group">
-                        <div className="custom-file">
-                            <input
-                                type="file"
-                                className="custom-file-input"
-                                id="inputGroupFile01"
-                                aria-describedby="inputGroupFileAddon01"
-                            />
-                            <label className="custom-file-label" htmlFor="inputGroupFile01">학력</label>
-                        </div>
-                    </div>
-                </div>
-            </Col>
-          </Row>
-          <Row className={styles.row2}>
-            <Col xs={12} sm={4} md={4} className={styles.form}>
-                <div className={styles.upload}>
-                    <div className="input-group">
-                        <div className="custom-file">
-                            <input
-                                type="file"
-                                className="custom-file-input"
-                                id="inputGroupFile01"
-                                aria-describedby="inputGroupFileAddon01"
-                            />
-                            <label className="custom-file-label" htmlFor="inputGroupFile01">경력/기간</label>
-                        </div>
-                    </div>
-                </div>
-            </Col>
-          </Row> */}
-          </>
-      )
-}
-
-export default withRouter(SignUp2);
+export default SignUp2;
