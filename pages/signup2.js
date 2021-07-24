@@ -9,6 +9,7 @@ import Router from 'next/router';
 import PerfectScrollbar from 'react-perfect-scrollbar'
 import 'react-perfect-scrollbar/dist/css/styles.css';
 import { useRouter, withRouter } from 'next/router';
+//import { Scrollbars } from 'react-custom-scrollbars';
 
 const ageOptions = [
     {value: '', text: '나이'},
@@ -80,6 +81,17 @@ const SignUp2 = () => {
         console.log(copyList[Number(id.split('-')[1])].value);
 
         setCareerList(copyList);
+    }
+
+    const subtractCertificate = (e) => {
+
+        const index = Number(e.target.id.split('-')[1]);
+        setCertificateList(certificateList.filter((e, i) => i !== index));
+    }
+
+    const subtractCareer = (e) => {
+        const index = Number(e.target.id.split('-')[1]);
+        setCareerList(careerList.filter((e, i) => i !== index));
     }
 
     let count = 0;
@@ -185,6 +197,7 @@ const SignUp2 = () => {
                                                         value={e.value}
                                                         onChange={(e) => {setCertificateValue(e)}}
                                                         />
+                                                    <div id={`div1-${i}`}  className={styles.minus} onClick={(e) => {subtractCertificate(e)}}> - </div>
                                                 </form>
                                                 <div key={count++} className='mt-2'/>
                                             </>
@@ -224,6 +237,7 @@ const SignUp2 = () => {
                                                         value={e.value}
                                                         onChange={(e) => {setCareerValue(e)}}
                                                         />
+                                                    <div id={`div2-${i}`} className={styles.minus} onClick={(e) => {subtractCareer(e)}}> - </div>
                                                 </form>
                                                 <div key={count++} className='mt-2'/>
                                             </>
