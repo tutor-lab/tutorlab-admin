@@ -49,76 +49,80 @@
 }
 
 .graysection {
-  background-color: #f3f3f3;
+  background-color: #f8f8f8;
   width: 375px;
   height: 729px;
   margin: 0 auto;
-  padding: 26px 24px 31px 21px;
+  padding: 26px 21px 31px 21px;
   .question {
     font-size: 13px;
     font-weight: 400;
+    line-height: 1.692307;
     color: #283237;
     margin: 0;
     margin-bottom: 11px;
   }
-
-  .add {
-    width: 330px;
-    height: 141px;
-    border-radius: 10px;
-    box-shadow: 0 1px 5px 0 #949bad;
-    background-color: white;
-    margin-bottom: 14px;
-    cursor: pointer;
-    .pluspic {
-      padding-top: 60px;
-      text-align: center;
-    }
-    .placeholdertext {
-      font-size: 15px;
-      color: #949bad;
-      font-weight: 400;
-      text-align: center;
-    }
-  }
-
-  .add2 {
+  .selectType {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 330px;
-    height: 141px;
-    border-radius: 10px;
-    box-shadow: 0 1px 5px 0 #949bad;
-    background-color: black;
-    margin-bottom: 14px;
-    cursor: pointer;
+    justify-content: space-between;
+    width: 335px;
+    height: 56px;
+    margin-bottom: 18px;
+    .selectBtn {
+      display: flex;
+      flex-direction: column;
+      width: 160px;
+      border-radius: 10px;
+      border: 0.25px solid #6a6a6a;
+      background-color: white;
+      padding: 8px 16px;
+      cursor: pointer;
+      .selector {
+        color: #9b9b9b;
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 1.666667;
+      }
+      .elements {
+        color: #3568ee;
+        font-size: 14px;
+        font-weight: 700;
+        line-height: 1.4285714;
+      }
+    } /*폰트 필요!!!*/
   }
 
-  input {
+  .modal {
+    position: absolute;
     display: none;
-  }
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    .modalElement {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 200px;
+      height: 40px;
+      background-color: white;
+      border: 0.25px solid #6a6a6a;
+      input {
+        display: none;
+      }
+    }
 
-  .inputBox {
-    display: block;
-    width: 330px;
-    height: 68px;
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0 1px 5px 0 #949bad;
-    padding: 11px 17px;
-    border: none;
-    outline: none;
-    resize: none;
-    margin-bottom: 4px;
+    .modalElement:hover {
+      font-weight: 900;
+      color: #2354d5;
+    }
   }
 
   .example {
     font-size: 13px;
     color: #949bad;
     font-weight: 400;
-    margin: 0;
-    margin-bottom: 17px;
+    line-height: 1.692307;
     padding-left: 17px;
   }
 }
