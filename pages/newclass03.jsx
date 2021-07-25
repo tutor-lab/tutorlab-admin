@@ -84,7 +84,7 @@ const NewClass03 = ({ form, nextStep, prevStep, handleChange }) => {
               onClick={handleChange("online")}
             />
             <label htmlFor="online">
-              {form.online == "off" ? (
+              {form.update.online == "off" ? (
                 <div className={styles.mediumbox}>
                   <span>온라인</span>
                 </div>
@@ -100,7 +100,7 @@ const NewClass03 = ({ form, nextStep, prevStep, handleChange }) => {
               onClick={handleChange("offline")}
             />
             <label htmlFor="offline">
-              {form.offline == "off" ? (
+              {form.update.offline == "off" ? (
                 <div className={styles.mediumbox}>
                   <span>오프라인</span>
                 </div>
@@ -124,7 +124,7 @@ const NewClass03 = ({ form, nextStep, prevStep, handleChange }) => {
               onClick={handleChange("personal")}
             />
             <label htmlFor="personal">
-              {form.personal == "off" ? (
+              {form.update.personal == "off" ? (
                 <div className={styles.mediumbox}>
                   <span>개인 수업</span>
                 </div>
@@ -136,7 +136,7 @@ const NewClass03 = ({ form, nextStep, prevStep, handleChange }) => {
             </label>
             <input type="checkbox" id="group" onClick={handleChange("group")} />
             <label htmlFor="group">
-              {form.group == "off" ? (
+              {form.update.group == "off" ? (
                 <div className={styles.mediumbox}>
                   <span>그룹 수업</span>
                 </div>
