@@ -1,4 +1,3 @@
-import Image from "next/image";
 import router from "next/router";
 import styles from "../styles/myclass.module.scss";
 import ClassCard from "./classcard";
@@ -6,29 +5,28 @@ import BottomTab from "./bottomtab";
 import Data from "../data.json";
 
 const MyClass = ({}) => {
-  for (let i = 0; i < Data.classes.length; i++) {
-    console.log(typeof Data.classes[i].tag);
-  }
   return (
     <>
-      <div className={styles.whitepage}>
+      <div className={styles.whitesection}>
         <h1 className={styles.title}>튜터</h1>
-        <button
-          type="button"
-          className={styles.selected}
-          onClick={() => router.push("/myclass")}
-        >
-          내 강의
-        </button>
-        <button
-          type="button"
-          className={styles.unselected}
-          onClick={() => router.push("/classposted")}
-        >
-          강의 등록
-        </button>
+        <div className={styles.category}>
+          <button
+            type="button"
+            className={styles.selected}
+            onClick={() => router.push("/myclass")}
+          >
+            내 강의
+          </button>
+          <button
+            type="button"
+            className={styles.unselected}
+            onClick={() => router.push("/classposting")}
+          >
+            강의 등록
+          </button>
+        </div>{" "}
       </div>
-      <div className={styles.graypage}>
+      <div className={styles.graysection}>
         <h3 className={styles.smallheadingB}>
           등록한 강의 총 {Data.registercnt}개
         </h3>
@@ -39,6 +37,7 @@ const MyClass = ({}) => {
             <></>
           );
         })}
+        {/* -> unique한 key값 필요 ==> 강의마다 id 부여 -> key={data.id}로 해결 */}
         <div className={styles.fixedTab}>
           <BottomTab />
         </div>

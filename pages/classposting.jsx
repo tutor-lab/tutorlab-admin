@@ -1,32 +1,35 @@
 import Image from "next/image";
 import router from "next/router";
-import styles from "../styles/myclass.module.scss";
+import styles from "../styles/classposting.module.scss";
 import ClassCard from "./classcard";
 import BottomTab from "./bottomtab";
 import Data from "../data.json";
 
-const ClassPosted = ({}) => {
+const ClassPosting = ({}) => {
   return (
     <>
-      <div className={styles.whitepage}>
+      <div className={styles.whitesection}>
         <h1 className={styles.title}>튜터</h1>
-        <button
-          type="button"
-          className={styles.unselected}
-          onClick={() => router.push("/myclass")}
-        >
-          내 강의
-        </button>
-        <button
-          type="button"
-          className={styles.selected}
-          onClick={() => router.push("/classposted")}
-        >
-          강의 등록
-        </button>
+        <div className={styles.category}>
+          <button
+            type="button"
+            className={styles.unselected}
+            onClick={() => router.push("/myclass")}
+          >
+            내 강의
+          </button>
+          <button
+            type="button"
+            className={styles.selected}
+            onClick={() => router.push("/classposting")}
+          >
+            강의 등록
+          </button>
+        </div>{" "}
       </div>
-      <div className={styles.graypage}>
-        <div className={styles.new}>
+
+      <div className={styles.graysection}>
+        <div>
           <h3 className={styles.smallheadingB}>새로운 강의 등록하기</h3>
           <button
             type="button"
@@ -47,7 +50,8 @@ const ClassPosted = ({}) => {
             </div>
           </button>
         </div>
-        <div className={styles.testing}>
+
+        <div>
           <h3 className={styles.smallheadingM}>
             심사 중인 강의 {Data.testingcnt}개(최대 24시간 소요)
           </h3>
@@ -58,8 +62,8 @@ const ClassPosted = ({}) => {
               <></>
             );
           })}
+          {/* -> unique한 key값 필요 ==> 강의마다 id 부여 -> key={data.id}로 해결 */}
         </div>
-        {/* 실제로 데이터 받아올 땐 <Row>map으로 처리</Row> */}
         <div className={styles.fixedTab}>
           <BottomTab />
         </div>
@@ -68,4 +72,4 @@ const ClassPosted = ({}) => {
   );
 };
 
-export default ClassPosted;
+export default ClassPosting;
