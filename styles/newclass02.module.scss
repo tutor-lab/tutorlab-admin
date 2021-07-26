@@ -99,7 +99,8 @@
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 1;
-    .modalElement {
+    .modalElement,
+    .modalInput {
       display: flex;
       justify-content: center;
       align-items: center;
@@ -110,6 +111,11 @@
       input {
         display: none;
       }
+    }
+
+    .modalInput {
+      text-align: center;
+      padding-left: 4px;
     }
 
     .modalElement:hover {
