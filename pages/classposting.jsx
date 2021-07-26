@@ -34,7 +34,7 @@ const ClassPosting = ({}) => {
           <button
             type="button"
             className={styles.add}
-            onClick={() => router.push("/newclass")}
+            onClick={() => router.push("/updateClass")}
           >
             <p>
               강의를 등록하고
