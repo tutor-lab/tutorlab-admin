@@ -15,7 +15,7 @@ const BottomTab = ({}) => {
           <li>
             <div className={styles.img}>
               <Image
-                src="/../public/images/class.png"
+                src="/images/class.png"
                 width="23px"
                 height="23px"
                 alt="강의"
@@ -34,7 +34,7 @@ const BottomTab = ({}) => {
           <li>
             <div className={styles.img}>
               <Image
-                src="/../public/images/board.png"
+                src="/images/board.png"
                 width="23px"
                 height="23px"
                 alt="게시판"
@@ -53,7 +53,7 @@ const BottomTab = ({}) => {
           <li>
             <div className={styles.img}>
               <Image
-                src="/../public/images/promotion.png"
+                src="/images/promotion.png"
                 width="23px"
                 height="23px"
                 alt="프로모션"
@@ -71,7 +71,7 @@ const BottomTab = ({}) => {
           <li>
             <div className={styles.img}>
               <Image
-                src="/../public/images/mypage.png"
+                src="/images/mypage.png"
                 width="23px"
                 height="23px"
                 alt="마이페이지"

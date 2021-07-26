@@ -2,23 +2,12 @@ import Image from "next/image";
 import styles from "../styles/classcard.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
-interface classes {
-  title: string;
-  offline: boolean;
-  online: boolean;
-  explanation: string;
-  tag: string[];
-  likes: number;
-  register: boolean;
-  testing: boolean;
-}
-
-const ClassCard = ({ data }: any) => {
+const ClassCard = ({ data }) => {
   return (
     <div className={styles.classCard}>
       <div className={styles.classCardImage}>
         <Image
-          src="/../public/images/classImage.jpg"
+          src="/images/classImage.jpg"
           width="330px"
           height="136px"
           alt="취업이 빨라지는 개발 교육 첫단계"
