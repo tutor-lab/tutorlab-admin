@@ -5,11 +5,11 @@ import Image from "next/image";
 const NewClass03 = ({ form, nextStep, prevStep, handleChange }) => {
   return (
     <>
-      <div className={styles.whitesection}>
+      <section className={styles.whitesection}>
         <div className={styles.prev} onClick={prevStep}>
           <Image
             src="/images/prev.png"
-            alt=""
+            alt="강의 등록 2단계로"
             width="10px"
             height="14px"
           ></Image>
@@ -20,10 +20,11 @@ const NewClass03 = ({ form, nextStep, prevStep, handleChange }) => {
           <h2 className={styles.unselected}>2단계</h2>
           <h2 className={styles.selected}>3단계</h2>
         </div>
-      </div>
-      <div className={styles.graysection}>
+      </section>
+
+      <section className={styles.graysection}>
         <div>
-          <p className={styles.question}>1. 가격을 입력해주세요.</p>
+          <h3 className={styles.question}>1. 가격을 입력해주세요.</h3>
           <div className={styles.cost}>
             <div className={styles.element}>
               <input
@@ -36,8 +37,9 @@ const NewClass03 = ({ form, nextStep, prevStep, handleChange }) => {
                 }
               />
               <span className={styles.unit}>원/시간</span>
-            </div>{" "}
+            </div>
             <span>X</span>
+
             <div className={styles.element}>
               <input
                 type="number"
@@ -51,6 +53,7 @@ const NewClass03 = ({ form, nextStep, prevStep, handleChange }) => {
               <span className={styles.unit}>분/회</span>
             </div>
             <span>X</span>
+
             <div className={styles.element}>
               <input
                 type="number"
@@ -64,6 +67,7 @@ const NewClass03 = ({ form, nextStep, prevStep, handleChange }) => {
               <span className={styles.unit}>회</span>
             </div>
           </div>
+
           <div className={styles.costsum}>
             <span> = </span>
             <div className={styles.sum}>
@@ -80,13 +84,14 @@ const NewClass03 = ({ form, nextStep, prevStep, handleChange }) => {
                 원
               </span>
             </div>
-          </div>{" "}
+          </div>
         </div>
+
         <div>
-          <p className={styles.question}>
+          <h3 className={styles.question}>
             2. 강의 방식(온/오프라인)을 선택해주세요.
             <span>*중복 선택 가능</span>
-          </p>
+          </h3>
           <div className={styles.answer}>
             <input
               type="checkbox"
@@ -95,15 +100,12 @@ const NewClass03 = ({ form, nextStep, prevStep, handleChange }) => {
             />
             <label htmlFor="online">
               {form.update.online == "off" ? (
-                <div className={styles.mediumbox}>
-                  <span>온라인</span>
-                </div>
+                <div className={styles.mediumbox}>온라인</div>
               ) : (
-                <div className={styles.mediumboxActive}>
-                  <span>온라인</span>
-                </div>
+                <div className={styles.mediumboxActive}>온라인</div>
               )}
             </label>
+
             <input
               type="checkbox"
               id="offline"
@@ -111,22 +113,20 @@ const NewClass03 = ({ form, nextStep, prevStep, handleChange }) => {
             />
             <label htmlFor="offline">
               {form.update.offline == "off" ? (
-                <div className={styles.mediumbox}>
-                  <span>오프라인</span>
-                </div>
+                <div className={styles.mediumbox}>오프라인 </div>
               ) : (
-                <div className={styles.mediumboxActive}>
-                  <span>오프라인</span>
-                </div>
+                <div className={styles.mediumboxActive}>오프라인</div>
               )}
             </label>
-          </div>{" "}
+          </div>
         </div>
+
         <div>
-          <p className={styles.question}>
+          <h3 className={styles.question}>
             3. 강의 방식(개인/그룹)을 선택해주세요.
             <span>*중복 선택 가능</span>
-          </p>
+          </h3>
+
           <div className={styles.answer}>
             <input
               type="checkbox"
@@ -135,38 +135,32 @@ const NewClass03 = ({ form, nextStep, prevStep, handleChange }) => {
             />
             <label htmlFor="personal">
               {form.update.personal == "off" ? (
-                <div className={styles.mediumbox}>
-                  <span>개인 수업</span>
-                </div>
+                <div className={styles.mediumbox}>개인 수업 </div>
               ) : (
-                <div className={styles.mediumboxActive}>
-                  <span>개인 수업</span>
-                </div>
+                <div className={styles.mediumboxActive}>개인 수업 </div>
               )}
             </label>
+
             <input type="checkbox" id="group" onClick={handleChange("group")} />
             <label htmlFor="group">
               {form.update.group == "off" ? (
-                <div className={styles.mediumbox}>
-                  <span>그룹 수업</span>
-                </div>
+                <div className={styles.mediumbox}>그룹 수업 </div>
               ) : (
-                <div className={styles.mediumboxActive}>
-                  <span>그룹 수업</span>
-                </div>
+                <div className={styles.mediumboxActive}>그룹 수업 </div>
               )}
             </label>
-          </div>{" "}
+          </div>
         </div>
-      </div>
-      <div className={styles.bottom}>
+      </section>
+
+      <section className={styles.bottom}>
         <button type="button" className={styles.next} onClick={nextStep}>
           강의 업로드
         </button>
         <div className={styles.fixedTab}>
           <BottomTab />
         </div>
-      </div>{" "}
+      </section>
     </>
   );
 };

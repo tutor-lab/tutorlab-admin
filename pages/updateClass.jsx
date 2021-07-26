@@ -1,12 +1,10 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { withRouter } from "react-router-dom";
 import {
   ChangeField,
   Initialize,
   NextStep,
   PrevStep,
-  UpdateClass,
 } from "../redux/reducers/update";
 import NewClass01 from "./newclass01";
 import NewClass02 from "./newclass02";
@@ -21,8 +19,8 @@ const NewClassForm = () => {
 
   const step = form.update.step;
   const onChange = (name) => (e) => {
+    //update values
     var value = name == "ckEditor" ? "" : e.target.value;
-    console.log(name);
     switch (name) {
       case "maintitle":
       case "subheading":
@@ -42,8 +40,20 @@ const NewClassForm = () => {
           hideModal();
         }
         break;
+      case "online":
+        value = form.update.online == "on" ? "off" : "on";
+        break;
+      case "offline":
+        value = form.update.offline == "on" ? "off" : "on";
+        break;
+      case "personal":
+        value = form.update.personal == "on" ? "off" : "on";
+        break;
+      case "group":
+        value = form.update.group == "on" ? "off" : "on";
+        break;
       case "ckEditor":
-        //어떤 값을 받아와야 할지.....???
+        //값을 어떻게 받아와야 할지.....???
         break;
       default:
         break;
@@ -59,30 +69,34 @@ const NewClassForm = () => {
   };
 
   const Next = (e) => {
+    //이전 페이지
     e.preventDefault();
     dispatch(NextStep());
   };
 
   const Prev = (e) => {
+    //다음 페이지
     e.preventDefault();
     dispatch(PrevStep());
   };
 
   const [preview, setPreview] = useState({ selectedFile: [] });
   const ImagePreview = (e) => {
+    //이미지 프리뷰
     const reader = new FileReader();
     reader.onloadend = () => {
       const base64 = reader.result;
       if (base64) {
-        setPreview(base64.toString().split(",")[1]); // 파일 base64 상태 업데이트
+        setPreview(base64.toString().split(",")[1]);
       }
     };
     if (e.target.files[0]) {
-      reader.readAsDataURL(e.target.files[0]); // 1. 파일을 읽어 버퍼에 저장합니다.
+      reader.readAsDataURL(e.target.files[0]);
     }
   };
 
   const TextLimit = (e) => {
+    //글자 수 제한
     if (e.target.value.length > 40) {
       e.target.value = e.target.value.slice(0, 40);
       alert("최대 40자까지 작성하실 수 있습니다.");
@@ -90,16 +104,19 @@ const NewClassForm = () => {
   };
 
   const showModal = () => {
+    //modal 보이게
     const menu = document.getElementById("menu");
     menu ? (menu.style.display = "block") : "";
   };
 
   const hideModal = () => {
+    //modal 숨기기
     const menu = document.getElementById("menu");
     menu ? (menu.style.display = "none") : "";
   };
 
   const radiobox = () => {
+    //체크한 라디오박스 구별
     const check = document.querySelector('input[name="modalElement"]:checked');
     const selected = check ? check.id.valueOf() : "";
     hideModal();
@@ -107,6 +124,7 @@ const NewClassForm = () => {
   };
 
   useEffect(() => {
+    //페이지 initialize
     dispatch(Initialize("update"));
   }, [dispatch]);
 

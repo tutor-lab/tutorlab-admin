@@ -1,31 +1,32 @@
 import Image from "next/image";
-import styles from "../styles/newclass.module.scss";
+import styles from "../styles/newclass01.module.scss";
 import BottomTab from "./bottomtab";
 
 const NewClass01 = ({ form, nextStep, prevStep, handleChange, preview }) => {
   return (
     <>
-      <div className={styles.whitesection}>
-        <div className={styles.prev} onClick={prevStep}>
+      <section className={styles.whitesection}>
+        <span className={styles.prev} onClick={prevStep}>
           <Image
             src="/images/prev.png"
-            alt=""
+            alt="메인 화면으로"
             width="10px"
             height="14px"
           ></Image>
-        </div>
+        </span>
         <h1 className={styles.title}>강의 등록</h1>
-        <div className={styles.category}>
+        <span className={styles.category}>
           <h2 className={styles.selected}>1단계</h2>
           <h2 className={styles.unselected}>2단계</h2>
           <h2 className={styles.unselected}>3단계</h2>
-        </div>{" "}
-      </div>
-      <div className={styles.graysection}>
+        </span>
+      </section>
+
+      <section className={styles.graysection}>
         <div>
-          <p className={styles.question}>
+          <h3 className={styles.question}>
             1. 강의 소개 메인 이미지를 등록해주세요.
-          </p>
+          </h3>
           <label htmlFor="classImg">
             {
               preview.selectedFile ? (
@@ -35,7 +36,7 @@ const NewClass01 = ({ form, nextStep, prevStep, handleChange, preview }) => {
                       src="/images/plus.png"
                       width="16px"
                       height="16px"
-                      alt=""
+                      alt="강의 대표 이미지를 추가하세요"
                     />
                   </div>
                   <p className={styles.placeholdertext}>
@@ -47,7 +48,7 @@ const NewClass01 = ({ form, nextStep, prevStep, handleChange, preview }) => {
                   <Image
                     width="141px"
                     height="141px"
-                    src={"data:image/png;base64," + preview}
+                    src={`data:image/png;base64,${preview}`}
                     alt="강의 대표 이미지"
                   />
                 </div>
@@ -58,7 +59,7 @@ const NewClass01 = ({ form, nextStep, prevStep, handleChange, preview }) => {
                       src="/images/plus.png"
                       width="16px"
                       height="16px"
-                      alt=""
+                      alt="강의 대표 이미지를 추가하세요"
                     />
                   </div>
                   <p className={styles.placeholdertext}>
@@ -67,7 +68,8 @@ const NewClass01 = ({ form, nextStep, prevStep, handleChange, preview }) => {
                 </div>
               )
               //이렇게 나누지 않고 preview.selectedFile&&!form.update.image?를 사용하면 업로드하는 시간 때문에 net:ERR_INVALID_URL 발생...
-              // 미리보기 이미지 사이즈 조정 필요...
+              //수정 필요
+              //미리보기 이미지 사이즈+스타일 조정 필요...
             }
             <input
               type="file"
@@ -75,9 +77,10 @@ const NewClass01 = ({ form, nextStep, prevStep, handleChange, preview }) => {
               onChange={handleChange("image")}
             ></input>
           </label>
-        </div>{" "}
+        </div>
+
         <div>
-          <p className={styles.question}>2. 강의 타이틀을 입력해주세요.</p>
+          <h3 className={styles.question}>2. 강의 타이틀을 입력해주세요.</h3>
           <textarea
             placeholder="최대 40자"
             className={styles.inputBox}
@@ -88,8 +91,9 @@ const NewClass01 = ({ form, nextStep, prevStep, handleChange, preview }) => {
             ex) 금융권 취업을 위한 데이터 분석 및 모델링
           </p>
         </div>
+
         <div>
-          <p className={styles.question}>3. 강의 소제목을 입력해주세요.</p>
+          <h3 className={styles.question}>3. 강의 소제목을 입력해주세요.</h3>
           <textarea
             placeholder="최대 40자"
             className={styles.inputBox}
@@ -99,9 +103,10 @@ const NewClass01 = ({ form, nextStep, prevStep, handleChange, preview }) => {
           <p className={styles.example}>
             ex) 빅데이터 플랫폼 구축,실무 경험 그대로
           </p>
-        </div>{" "}
+        </div>
+
         <div>
-          <p className={styles.question}>4. 간략하게 나를 설명해주세요.</p>
+          <h3 className={styles.question}>4. 간략하게 나를 설명해주세요.</h3>
           <textarea
             placeholder="최대 40자"
             className={styles.inputBox}
@@ -111,16 +116,17 @@ const NewClass01 = ({ form, nextStep, prevStep, handleChange, preview }) => {
           <p className={styles.example}>
             ex) 삼성전자 10년 근무,sw 개발 및 품질 경력
           </p>
-        </div>{" "}
-      </div>
-      <div className={styles.bottom}>
+        </div>
+      </section>
+
+      <section className={styles.bottom}>
         <button type="button" className={styles.next} onClick={nextStep}>
           다음
         </button>
         <div className={styles.fixedTab}>
           <BottomTab />
         </div>
-      </div>{" "}
+      </section>
     </>
   );
 };

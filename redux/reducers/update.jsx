@@ -3,7 +3,6 @@ import produce from "immer";
 
 const INITIALIZE = "newclass/INITIALIZE";
 const CHANGE_FIELD = "newclass/CHANGE_FIELD";
-const UPDATE_CLASS = "newclass/UPDATE_CLASS";
 const NEXT_STEP = "newclass/NEXT_STEP";
 const PREV_STEP = "newclass/PREV_STEP";
 
@@ -12,7 +11,6 @@ export const ChangeField = createAction(
   CHANGE_FIELD,
   ({ form, key, value }) => ({ form, key, value })
 );
-export const UpdateClass = createAction(UPDATE_CLASS, (form) => form);
 export const NextStep = createAction(NEXT_STEP, (form) => form);
 export const PrevStep = createAction(PREV_STEP, (form) => form);
 
@@ -43,9 +41,6 @@ const Update = handleActions(
       produce(state, (draft) => {
         draft[form][key] = value;
       }),
-    [UPDATE_CLASS]: (state) => ({
-      ...state,
-    }),
     [NEXT_STEP]: (state) =>
       produce(state, (draft) => {
         draft["update"]["step"] += 1;
