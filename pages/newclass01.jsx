@@ -2,7 +2,7 @@ import Image from "next/image";
 import styles from "../styles/newclass.module.scss";
 import BottomTab from "./bottomtab";
 
-const NewClass01 = ({ form, nextStep, prevStep, handleChange }) => {
+const NewClass01 = ({ form, nextStep, prevStep, handleChange, preview }) => {
   return (
     <>
       <div className={styles.whitesection}>
@@ -27,7 +27,7 @@ const NewClass01 = ({ form, nextStep, prevStep, handleChange }) => {
             1. 강의 소개 메인 이미지를 등록해주세요.
           </p>
           <label htmlFor="classImg">
-            {form.update.img == undefined ? (
+            {preview.selectedFile ? (
               <div className={styles.add}>
                 <div className={styles.pluspic}>
                   <Image
@@ -46,7 +46,7 @@ const NewClass01 = ({ form, nextStep, prevStep, handleChange }) => {
                 <Image
                   width="141px"
                   height="141px"
-                  src={`data:image/png;base64,${form.update.img}`}
+                  src={`data:image/png;base64,${preview}`}
                   alt=""
                 />
               </div>
