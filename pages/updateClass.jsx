@@ -11,6 +11,7 @@ import {
 import NewClass01 from "./newclass01";
 import NewClass02 from "./newclass02";
 import NewClass03 from "./newclass03";
+import MyClass from "./myclass";
 
 const NewClassForm = () => {
   const dispatch = useDispatch();
@@ -20,8 +21,8 @@ const NewClassForm = () => {
 
   const step = form.update.step;
   const onChange = (name) => (e) => {
-    var value = e.target.value;
-    console.log(e);
+    var value = name == "ckEditor" ? "" : e.target.value;
+    console.log(name);
     switch (name) {
       case "maintitle":
       case "subheading":
@@ -34,6 +35,15 @@ const NewClassForm = () => {
       case "language":
         const selected = radiobox();
         value = selected;
+        break;
+      case "languageInput":
+        if (e.code == "Enter") {
+          name = "language";
+          hideModal();
+        }
+        break;
+      case "ckEditor":
+        //어떤 값을 받아와야 할지.....???
         break;
       default:
         break;
@@ -58,13 +68,13 @@ const NewClassForm = () => {
     dispatch(PrevStep());
   };
 
-  const [img, setImg] = useState("");
+  const [preview, setPreview] = useState({ selectedFile: [] });
   const ImagePreview = (e) => {
     const reader = new FileReader();
     reader.onloadend = () => {
       const base64 = reader.result;
       if (base64) {
-        setImg(base64.toString().split(",")[1]); // 파일 base64 상태 업데이트
+        setPreview(base64.toString().split(",")[1]); // 파일 base64 상태 업데이트
       }
     };
     if (e.target.files[0]) {
@@ -84,11 +94,15 @@ const NewClassForm = () => {
     menu ? (menu.style.display = "block") : "";
   };
 
+  const hideModal = () => {
+    const menu = document.getElementById("menu");
+    menu ? (menu.style.display = "none") : "";
+  };
+
   const radiobox = () => {
     const check = document.querySelector('input[name="modalElement"]:checked');
     const selected = check ? check.id.valueOf() : "";
-    const menu = document.getElementById("menu");
-    menu ? (menu.style.display = "none") : "";
+    hideModal();
     return selected;
   };
 
@@ -105,6 +119,7 @@ const NewClassForm = () => {
           nextStep={Next}
           prevStep={Prev}
           handleChange={onChange}
+          preview={preview}
         />
       );
     case 2:
@@ -129,7 +144,7 @@ const NewClassForm = () => {
         />
       );
     default:
-      return <></>;
+      return <MyClass />;
   }
 };
 

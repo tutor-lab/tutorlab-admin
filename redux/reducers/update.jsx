@@ -25,7 +25,7 @@ const initialState = {
     introduction: "",
     classtype: "개발",
     language: "Java",
-    // ckEditor: "",
+    ckEditor: "",
     pricePerHour: 0,
     timePerClass: 0,
     numOfTimes: 0,
