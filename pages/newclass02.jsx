@@ -1,10 +1,10 @@
 import styles from "../styles/newclass02.module.scss";
 import BottomTab from "./bottomtab";
-// import { CKEditor } from "ckeditor4-react";
 import Image from "next/image";
-import { useState, useEffect } from "react";
-// import "../ckeditor/ckeditor.js";
-
+import { CKEditor } from "ckeditor4-react";
+// import { CKEditor } from "@ckeditor/ckeditor5-react";
+// import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+// class CKEDITOR.replaceClass="editor1";
 const NewClass02 = ({ form, nextStep, prevStep, handleChange, showModal }) => {
   return (
     <>
@@ -88,6 +88,13 @@ const NewClass02 = ({ form, nextStep, prevStep, handleChange, showModal }) => {
                 SQL
               </div>
             </label>
+            <input
+              type="text"
+              placeholder="직접 입력하기"
+              className={styles.modalInput}
+              onKeyPress={handleChange("languageInput")}
+              id="modalInput"
+            ></input>
           </div>
         </div>
         <div>
@@ -99,6 +106,25 @@ const NewClass02 = ({ form, nextStep, prevStep, handleChange, showModal }) => {
             <li>커리큘럼</li>
             <li>강의 예시화면 - gif 등록 가능(00mb 이하)</li>
           </ul>
+        </div>
+        {/* <CKEditor
+          editor={ClassicEditor}
+          data="<p>Hello from CKEditor 5!</p>"
+          onChange={(event, editor) => {
+            const data = editor.getData();
+            console.log(data);
+          }}
+        />{" "} */}
+        <div className={styles.ckEditor}>
+          <CKEditor
+            type="classic"
+            config={{
+              filebrowserUploadUrl: "/upload.do?type=Files",
+              filebrowserImageUploadUrl: "/upload.do?type=Images",
+              filebrowserUploadMethod: "form",
+            }}
+            onChange={handleChange("ckEditor")}
+          />
         </div>
         {/* <textarea name="editor1" id="editor1" rows={10} cols={80}></textarea>
         <script>CKEDITOR.replace({"editor1"})</script> */}
