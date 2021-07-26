@@ -62,9 +62,10 @@ const NewClass03 = ({ form, nextStep, prevStep, handleChange }) => {
               <span className={styles.money}>
                 <strong>
                   {(
-                    form.update.pricePerHour *
-                    form.update.timePerClass *
-                    form.update.numOfTimes
+                    (form.update.pricePerHour *
+                      form.update.timePerClass *
+                      form.update.numOfTimes) /
+                    60
                   ).toLocaleString("ko-KR")}
                 </strong>
                 원
