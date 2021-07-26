@@ -31,6 +31,9 @@ const NewClass03 = ({ form, nextStep, prevStep, handleChange }) => {
                 placeholder="30000"
                 className={styles.smallbox}
                 onChange={handleChange("pricePerHour")}
+                value={
+                  form.update.pricePerHour == 0 ? "" : form.update.pricePerHour
+                }
               />
               <span className={styles.unit}>원/시간</span>
             </div>{" "}
@@ -41,6 +44,9 @@ const NewClass03 = ({ form, nextStep, prevStep, handleChange }) => {
                 placeholder="60"
                 className={styles.smallbox}
                 onChange={handleChange("timePerClass")}
+                value={
+                  form.update.timePerClass == 0 ? "" : form.update.timePerClass
+                }
               />
               <span className={styles.unit}>분/회</span>
             </div>
@@ -51,6 +57,9 @@ const NewClass03 = ({ form, nextStep, prevStep, handleChange }) => {
                 placeholder="10"
                 className={styles.smallbox}
                 onChange={handleChange("numOfTimes")}
+                value={
+                  form.update.numOfTimes == 0 ? "" : form.update.numOfTimes
+                }
               />
               <span className={styles.unit}>회</span>
             </div>

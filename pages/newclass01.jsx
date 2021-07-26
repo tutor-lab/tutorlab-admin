@@ -27,31 +27,48 @@ const NewClass01 = ({ form, nextStep, prevStep, handleChange, preview }) => {
             1. 강의 소개 메인 이미지를 등록해주세요.
           </p>
           <label htmlFor="classImg">
-            {preview.selectedFile ? (
-              <div className={styles.add}>
-                <div className={styles.pluspic}>
+            {
+              preview.selectedFile ? (
+                <div className={styles.add}>
+                  <div className={styles.pluspic}>
+                    <Image
+                      src="/images/plus.png"
+                      width="16px"
+                      height="16px"
+                      alt=""
+                    />
+                  </div>
+                  <p className={styles.placeholdertext}>
+                    가로:00px 세로:00px(00바이트 이내)
+                  </p>
+                </div>
+              ) : form.update.image ? (
+                <div className={styles.add2}>
                   <Image
-                    src="/../public/images/plus.png"
-                    width="16px"
-                    height="16px"
-                    alt=""
+                    width="141px"
+                    height="141px"
+                    src={"data:image/png;base64," + preview}
+                    alt="강의 대표 이미지"
                   />
                 </div>
-                <p className={styles.placeholdertext}>
-                  가로:00px 세로:00px(00바이트 이내)
-                </p>
-              </div>
-            ) : (
-              <div className={styles.add2}>
-                <Image
-                  width="141px"
-                  height="141px"
-                  src={`data:image/png;base64,${preview}`}
-                  alt=""
-                />
-              </div>
+              ) : (
+                <div className={styles.add}>
+                  <div className={styles.pluspic}>
+                    <Image
+                      src="/images/plus.png"
+                      width="16px"
+                      height="16px"
+                      alt=""
+                    />
+                  </div>
+                  <p className={styles.placeholdertext}>
+                    가로:00px 세로:00px(00바이트 이내)
+                  </p>
+                </div>
+              )
+              //이렇게 나누지 않고 preview.selectedFile&&!form.update.image?를 사용하면 업로드하는 시간 때문에 net:ERR_INVALID_URL 발생...
               // 미리보기 이미지 사이즈 조정 필요...
-            )}
+            }
             <input
               type="file"
               id="classImg"
@@ -65,18 +82,19 @@ const NewClass01 = ({ form, nextStep, prevStep, handleChange, preview }) => {
             placeholder="최대 40자"
             className={styles.inputBox}
             onChange={handleChange("maintitle")}
-          ></textarea>
+            value={form.update.maintitle} /*뒤로 가도 데이터 유지되도록*/
+          />
           <p className={styles.example}>
             ex) 금융권 취업을 위한 데이터 분석 및 모델링
           </p>
-        </div>{" "}
+        </div>
         <div>
-          {" "}
           <p className={styles.question}>3. 강의 소제목을 입력해주세요.</p>
           <textarea
             placeholder="최대 40자"
             className={styles.inputBox}
             onChange={handleChange("subheading")}
+            value={form.update.subheading}
           ></textarea>
           <p className={styles.example}>
             ex) 빅데이터 플랫폼 구축,실무 경험 그대로
@@ -88,6 +106,7 @@ const NewClass01 = ({ form, nextStep, prevStep, handleChange, preview }) => {
             placeholder="최대 40자"
             className={styles.inputBox}
             onChange={handleChange("introduction")}
+            value={form.update.introduction}
           ></textarea>
           <p className={styles.example}>
             ex) 삼성전자 10년 근무,sw 개발 및 품질 경력

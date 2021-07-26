@@ -8,7 +8,7 @@ import { CKEditor } from "ckeditor4-react";
 const NewClass02 = ({ form, nextStep, prevStep, handleChange, showModal }) => {
   return (
     <>
-      <div className={styles.whitesection}>
+      <section className={styles.whitesection}>
         <div className={styles.prev} onClick={prevStep}>
           <Image
             src="/images/prev.png"
@@ -23,8 +23,8 @@ const NewClass02 = ({ form, nextStep, prevStep, handleChange, showModal }) => {
           <h2 className={styles.selected}>2단계</h2>
           <h2 className={styles.unselected}>3단계</h2>
         </div>{" "}
-      </div>
-      <div className={styles.graysection}>
+      </section>
+      <section className={styles.graysection}>
         <div>
           <p className={styles.question}>1. 강의 종류를 선택해주세요.</p>
           <div className={styles.selectType}>
@@ -138,7 +138,7 @@ const NewClass02 = ({ form, nextStep, prevStep, handleChange, showModal }) => {
         {/* //<resources location="/WEB-INF/views/ckeditor/" mapping="/ckeditor/**"></resources>을 servlet-context.xml에 추가
           onChange={handleChange("ckEditor")}
         ></CKEditor>{" "} */}
-      </div>
+      </section>
       <div className={styles.bottom}>
         <button type="button" className={styles.next} onClick={nextStep}>
           다음
