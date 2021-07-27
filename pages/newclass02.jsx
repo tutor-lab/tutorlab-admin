@@ -1,11 +1,20 @@
+import {useState} from 'react'
 import styles from "../styles/newclass02.module.scss";
 import BottomTab from "./bottomtab";
 import Image from "next/image";
 import { CKEditor } from "ckeditor4-react"; //Ckeditor4 사용
+import EditorComponent from "../components/quillEditor/EditorComponent";
+
 // import { CKEditor } from "@ckeditor/ckeditor5-react";
 // import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 // class CKEDITOR -> getData (문제: CKEDITOR가 유효하지 않음...)
 const NewClass02 = ({ form, nextStep, prevStep, handleChange, showModal }) => {
+
+  const [picture, setPicture] = useState('');
+  function onEditorChange(value) {
+    setPicture(value)
+  }
+  
   return (
     <>
       <section className={styles.whitesection}>
@@ -116,9 +125,9 @@ const NewClass02 = ({ form, nextStep, prevStep, handleChange, showModal }) => {
           </ul>
         </div>
 
-        <div className={styles.ckEditor}>
+        <div className={styles.quillEditorScroll}>
           {/*ckeditor4 사용 시*/}
-          <CKEditor
+          {/* <CKEditor
             type="classic"
             config={{
               filebrowserUploadUrl: "/upload.do?type=Files",
@@ -126,7 +135,8 @@ const NewClass02 = ({ form, nextStep, prevStep, handleChange, showModal }) => {
               filebrowserUploadMethod: "form",
             }}
             onChange={handleChange("ckEditor")}
-          />
+          /> */}
+          <EditorComponent value={picture} onChange={onEditorChange}/>
         </div>
         {/* //<resources location="/WEB-INF/views/ckeditor/" mapping="/ckeditor/**"></resources>을 servlet-context.xml에 추가
              -> 이미지를 서버로 전송 시 404 에러 발생... 위 코드로 해결 가능?
