@@ -2,9 +2,14 @@ import Image from "next/image";
 import styles from "../styles/classcard.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
+import router from "next/router";
+
 const ClassCard = ({ data }) => {
   return (
-    <div className={styles.classCard}>
+    <div
+      className={styles.classCard}
+      onClick={() => router.push("/classposting")}
+    >
       <div className={styles.classCardImage}>
         <Image
           src="/images/classImage.jpg"
