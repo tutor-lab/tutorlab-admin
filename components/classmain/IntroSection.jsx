@@ -1,5 +1,6 @@
 import Discount from "./Discount";
 import style from "./introSection.module.scss";
+import Rating from "./Rating";
 
 const IntroSection = ({
   tutorname,
@@ -18,10 +19,18 @@ const IntroSection = ({
         튜터&nbsp;<strong>{tutorname}</strong>
       </span>
       <h1 className={style.title}>{title}</h1>
-      <span className={style.rates}>{rating}</span>
-      <button type="button" className={style.reviewBtn}>
-        리뷰 보기&nbsp; <span>({reviewCnt})</span>
-      </button>
+
+      <span className={style.rateReviews}>
+        <span className={style.stars}>
+          <Rating rating={rating}></Rating>
+        </span>
+        <span className={style.rates}>{rating}</span>
+        <button type="button" className={style.reviewBtn}>
+          <span className={style.gotoReview}> 리뷰보기&nbsp;</span>
+          <span className={style.reviewcount}>({reviewCnt})</span>
+        </button>
+      </span>
+
       <h3 className={style.subheading}>{subheading}</h3>
       <Discount
         originPrice={originPrice}

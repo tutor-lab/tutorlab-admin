@@ -1,5 +1,6 @@
 import Image from "next/image";
 import style from "./reviewSection.module.scss";
+import Rating from "./Rating";
 
 const Review = ({ profile, name, date, rating, review }) => {
   return (
@@ -17,7 +18,9 @@ const Review = ({ profile, name, date, rating, review }) => {
         <h2 className={style.name}>
           {name} <span className={style.date}>{date}</span>
         </h2>
-        <span className={style.rating}>{rating}</span>
+        <span className={style.rating}>
+          <Rating rating={rating}></Rating>
+        </span>
         <span className={style.review}>{review}</span>
       </div>
     </section>
@@ -63,8 +66,6 @@ const CommentWriting = () => {
 };
 
 const ReviewSection = ({
-  totalRating,
-  reviewCnt,
   Uprofile,
   Uname,
   Udate,
@@ -75,11 +76,8 @@ const ReviewSection = ({
   Tcomment,
 }) => {
   return (
-    <section className={style.ReviewSection}>
-      <section className={style.totalReview}>
-        <strong className={style.rating}>{totalRating.toFixed(1)}</strong>
-        <span className={style.reviewCnt}>{reviewCnt}개의 리뷰</span>
-      </section>
+    <>
+      {" "}
       <Review
         profile={Uprofile}
         name={Uname}
@@ -89,7 +87,7 @@ const ReviewSection = ({
       ></Review>
       <Comment profile={Tprofile} date={Tdate} comment={Tcomment}></Comment>
       <CommentWriting></CommentWriting>
-    </section>
+    </>
   );
 };
 export default ReviewSection;

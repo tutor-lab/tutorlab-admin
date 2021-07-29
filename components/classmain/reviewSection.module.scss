@@ -1,33 +1,8 @@
-.ReviewSection {
-  .totalReview {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #f3f5f8;
-    height: 108px;
-    border-top: 0.25px solid #b1b1b1;
-    .rating {
-      color: black;
-      font-size: 40px;
-      font-weight: 700;
-      line-height: 1.17;
-      margin-right: 10px;
-    }
-    .reviewCnt {
-      color: #666666;
-      font-size: 10px;
-      font-weight: 400;
-      line-height: 1.17;
-    }
-  }
-}
-
 .UserReview {
   display: flex;
   background-color: white;
   padding: 23px 29px;
   border-top: 0.25px solid #b1b1b1;
-  // border-bottom: 0.25px solid #b1b1b1;
   .profile {
     border-radius: 50%;
     margin-left: 9px;
@@ -39,7 +14,7 @@
     width: 230px;
     .name {
       display: flex;
-      margin: 0;
+      margin: 0 0 7px 0;
       align-items: flex-end;
       font-weight: 400;
       line-height: 1.44;
@@ -50,6 +25,9 @@
         color: #939393;
         margin-left: 8px;
       }
+    }
+    .rating {
+      margin-bottom: 10px;
     }
     .review {
       font-size: 11px;
@@ -135,4 +113,13 @@
   bottom: 80px;
   left: 50%;
   transform: translateX(-50%);
+}
+
+.blankSection {
+  background-color: white;
+  height: 500px;
+  .blank {
+  }
+  .noreview {
+  }
 }
