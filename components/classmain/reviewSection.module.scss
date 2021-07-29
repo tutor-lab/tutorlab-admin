@@ -1,8 +1,17 @@
 .UserReview {
   display: flex;
+  position: relative;
   background-color: white;
   padding: 23px 29px;
   border-top: 0.25px solid #b1b1b1;
+  .dotbtn {
+    position: absolute;
+    top: 26px;
+    right: 29px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+  }
   .profile {
     border-radius: 50%;
     margin-left: 9px;
@@ -113,13 +122,4 @@
   bottom: 80px;
   left: 50%;
   transform: translateX(-50%);
-}
-
-.blankSection {
-  background-color: white;
-  height: 500px;
-  .blank {
-  }
-  .noreview {
-  }
 }

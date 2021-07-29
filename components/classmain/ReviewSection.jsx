@@ -5,14 +5,29 @@ import Rating from "./Rating";
 const Review = ({ profile, name, date, rating, review }) => {
   return (
     <section className={style.UserReview}>
+      <button type="button" className={style.dotbtn}>
+        <Image src={"/images/dots.png"} alt="" width="10px" height="12px" />
+      </button>
+      {/* 버튼 이미지 필요 */}
       <div className={style.profile}>
-        <Image
-          src={profile}
-          alt=""
-          width="30px"
-          height="30px"
-          className={style.profile}
-        ></Image>
+        {/* 프로필 사진 없을 때 사용할 기본 이미지 필요 */}
+        {profile != "" ? (
+          <Image
+            src={profile}
+            alt=""
+            width="30px"
+            height="30px"
+            className={style.profile}
+          ></Image>
+        ) : (
+          <Image
+            src="/images/profile.png"
+            alt=""
+            width="30px"
+            height="30px"
+            className={style.profile}
+          ></Image>
+        )}
       </div>
       <div className={style.textSection}>
         <h2 className={style.name}>
