@@ -1,0 +1,19 @@
+.starSection {
+  .graystar {
+    width: 80px;
+    height: 16px;
+    background-image: url("/images/graystar.png");
+    background-size: 80px;
+    background-repeat: no-repeat;
+    position: relative;
+    .bluestar {
+      background-image: url("/images/bluestar.png");
+      background-size: 80px;
+      height: 16px;
+      top: 0.5px;
+      background-repeat: no-repeat;
+      position: absolute;
+      overflow: hidden;
+    }
+  }
+}

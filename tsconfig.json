@@ -15,12 +15,12 @@
     "jsx": "preserve"
   },
   "include": [
-    "pages/classcard.jsx",
+    "components/classcard.jsx",
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
     "pages/_app.tsx",
-    "pages/bottomtab.jsx",
+    "components/bottomtab.jsx",
     "pages/index.jsx",
     "pages/classposted.jsx",
     "pages/myclass.jsx",
