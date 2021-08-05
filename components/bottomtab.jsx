@@ -1,5 +1,5 @@
 import Image from "next/image";
-import styles from "../styles/bottomtab.module.scss";
+import styles from "./bottomtab.module.scss";
 import router from "next/router";
 
 const BottomTab = ({}) => {
@@ -11,7 +11,6 @@ const BottomTab = ({}) => {
           onClick={() => router.push("/myclass")}
           className={styles.elements}
         >
-          {/* 임시로 링크! */}
           <li>
             <div className={styles.img}>
               <Image
@@ -42,24 +41,6 @@ const BottomTab = ({}) => {
               />
             </div>
             <span>게시판</span>
-          </li>
-        </button>
-
-        <button
-          type="button"
-          onClick={() => router.push("/promotion")}
-          className={styles.elements}
-        >
-          <li>
-            <div className={styles.img}>
-              <Image
-                src="/images/promotion.png"
-                width="23px"
-                height="23px"
-                alt="프로모션"
-              />
-            </div>
-            <span>프로모션</span>
           </li>
         </button>
 
