@@ -1,8 +1,8 @@
 import Image from "next/image";
 import router from "next/router";
 import styles from "../styles/classposting.module.scss";
-import ClassCard from "./classcard";
-import BottomTab from "./bottomtab";
+import ClassCard from "../components/classcard";
+import BottomTab from "../components/bottomtab";
 import Data from "../data.json";
 
 const ClassPosting = ({}) => {
@@ -34,7 +34,7 @@ const ClassPosting = ({}) => {
           <button
             type="button"
             className={styles.add}
-            onClick={() => router.push("/updateClass")}
+            onClick={() => router.push("/classRegistration")}
           >
             <p>
               강의를 등록하고

@@ -6,12 +6,13 @@ import {
   NextStep,
   PrevStep,
 } from "../redux/reducers/update";
-import NewClass01 from "./newclass01";
-import NewClass02 from "./newclass02";
-import NewClass03 from "./newclass03";
 import MyClass from "./myclass";
+import Step01 from "../components/classRegistration/step/step01";
+import Step02 from "../components/classRegistration/step/step02";
+import Step03 from "../components/classRegistration/step/step03";
+import Modal from "../components/classRegistration/Modal";
 
-const NewClassForm = () => {
+const ClassRegistration = () => {
   const dispatch = useDispatch();
   const { form } = useSelector(({ update }) => ({
     form: update,
@@ -20,18 +21,22 @@ const NewClassForm = () => {
   const step = form.update.step;
   const onChange = (name) => (e) => {
     //update values
-    var value = name == "ckEditor" ? "" : e.target.value;
+    var value = e.target.value;
     switch (name) {
       case "maintitle":
+        TextLimit(e, 40);
+        value = e.target.value;
+        break;
       case "subheading":
       case "introduction":
-        TextLimit(e);
+        TextLimit(e, 25);
+        value = e.target.value;
         break;
       case "image":
         ImagePreview(e);
         break;
       case "language":
-        const selected = radiobox();
+        const selected = radiobox(1);
         value = selected;
         break;
       case "languageInput":
@@ -40,20 +45,24 @@ const NewClassForm = () => {
           hideModal();
         }
         break;
+      case "level":
+        const level = radiobox(2);
+        value = level;
+        break;
       case "online":
         value = form.update.online == "on" ? "off" : "on";
         break;
       case "offline":
         value = form.update.offline == "on" ? "off" : "on";
         break;
+      case "discuss":
+        value = form.update.discuss == "on" ? "off" : "on";
+        break;
       case "personal":
         value = form.update.personal == "on" ? "off" : "on";
         break;
       case "group":
         value = form.update.group == "on" ? "off" : "on";
-        break;
-      case "ckEditor":
-        //값을 어떻게 받아와야 할지.....???
         break;
       default:
         break;
@@ -95,11 +104,11 @@ const NewClassForm = () => {
     }
   };
 
-  const TextLimit = (e) => {
+  const TextLimit = (e, limit) => {
     //글자 수 제한
-    if (e.target.value.length > 40) {
-      e.target.value = e.target.value.slice(0, 40);
-      alert("최대 40자까지 작성하실 수 있습니다.");
+    if (e.target.value.length > limit) {
+      alert(`최대 ${limit}자까지 작성하실 수 있습니다.`);
+      e.target.value = e.target.value.substring(0, limit);
     }
   };
 
@@ -107,19 +116,65 @@ const NewClassForm = () => {
     //modal 보이게
     const menu = document.getElementById("menu");
     menu ? (menu.style.display = "block") : "";
+    const back = document.getElementById("LanBackground");
+    back ? (back.style.display = "block") : "";
+    const modal = document.getElementById("languageModal");
+    modal ? (modal.style.display = "block") : "";
   };
 
   const hideModal = () => {
     //modal 숨기기
     const menu = document.getElementById("menu");
     menu ? (menu.style.display = "none") : "";
+    const back = document.getElementById("LanBackground");
+    back ? (back.style.display = "none") : "";
+    const modal = document.getElementById("languageModal");
+    modal ? (modal.style.display = "none") : "";
   };
 
-  const radiobox = () => {
+  const showLevel = () => {
+    const level = document.getElementById("level");
+    level ? (level.style.display = "block") : "";
+    const back = document.getElementById("LevBackground");
+    back ? (back.style.display = "block") : "";
+    const modal = document.getElementById("levelModal");
+    modal ? (modal.style.display = "block") : "";
+  };
+
+  const hideLevel = () => {
+    const level = document.getElementById("level");
+    level ? (level.style.display = "none") : "";
+    const back = document.getElementById("LevBackground");
+    back ? (back.style.display = "none") : "";
+    const modal = document.getElementById("levelModal");
+    modal ? (modal.style.display = "none") : "";
+  };
+
+  const showGray = () => {
+    const menu = document.getElementById("modal");
+    menu ? (menu.style.display = "block") : "";
+    const back = document.getElementById("goBackModal");
+    back ? (back.style.display = "block") : "";
+    const gray = document.getElementById("grayOne");
+    gray ? (gray.style.display = "block") : "";
+  };
+
+  const hideGray = () => {
+    const menu = document.getElementById("modal");
+    menu ? (menu.style.display = "none") : "";
+    const back = document.getElementById("goBackModal");
+    back ? (back.style.display = "none") : "";
+    const gray = document.getElementById("grayOne");
+    gray ? (gray.style.display = "none") : "";
+  };
+  const radiobox = (num) => {
     //체크한 라디오박스 구별
-    const check = document.querySelector('input[name="modalElement"]:checked');
+    const check =
+      num == 1
+        ? document.querySelector('input[name="modalElement"]:checked')
+        : document.querySelector('input[name="levelElement"]:checked');
     const selected = check ? check.id.valueOf() : "";
-    hideModal();
+    num == 1 ? hideModal() : hideLevel();
     return selected;
   };
 
@@ -131,39 +186,41 @@ const NewClassForm = () => {
   switch (step) {
     case 1:
       return (
-        <NewClass01
+        <Step01
           type="update"
           form={form}
           nextStep={Next}
-          prevStep={Prev}
           handleChange={onChange}
           preview={preview}
+          showGray={showGray}
+          hideGray={hideGray}
         />
       );
     case 2:
       return (
-        <NewClass02
+        <Step02
           type="update"
           form={form}
           nextStep={Next}
           prevStep={Prev}
           handleChange={onChange}
           showModal={showModal}
+          showLevel={showLevel}
         />
       );
     case 3:
       return (
-        <NewClass03
+        <Step03
           type="update"
           form={form}
-          nextStep={Next}
           prevStep={Prev}
           handleChange={onChange}
         />
       );
+
     default:
       return <MyClass />;
   }
 };
 
-export default NewClassForm;
+export default ClassRegistration;
