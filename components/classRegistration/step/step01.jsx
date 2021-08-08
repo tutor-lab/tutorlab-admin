@@ -36,7 +36,7 @@ const Step01 = ({
           title={"2. 강의 타이틀을 입력해주세요."}
           placeholder={"최대 40자"}
           example={"ex) 금융권 취업을 위한 데이터 분석 및 모델링 "}
-          value={form.update.maintitle}
+          value={form.maintitle}
           onChange={handleChange("maintitle")}
           limit={40}
         />
@@ -45,7 +45,7 @@ const Step01 = ({
           title={"3. 강의 소제목을 입력해주세요."}
           placeholder={"최대 25자"}
           example={"ex) 빅데이터플랫폼 구축, 실무 경험 그대로"}
-          value={form.update.subheading}
+          value={form.subheading}
           onChange={handleChange("subheading")}
           limit={25}
         />
@@ -54,7 +54,7 @@ const Step01 = ({
           title={"4. 간략하게 나를 소개해주세요."}
           placeholder={"최대 25자"}
           example={"ex) 삼성전자 10년 근무, sw 개발 및 품질 경력"}
-          value={form.update.introduction}
+          value={form.introduction}
           onChange={handleChange("introduction")}
           limit={25}
         />

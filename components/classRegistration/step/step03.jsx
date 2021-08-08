@@ -8,11 +8,11 @@ import { BlueModal } from "../Modal";
 const Step03 = ({ form, prevStep, handleChange }) => {
   return (
     <div className={styles.step03}>
-      <div className={styles.background}>
+      <div className={styles.background} id="uploadBack">
         <div className={styles.uploadModal} id="uploadModal">
           <BlueModal />
         </div>
-      </div>
+      </div>{" "}
       <WhiteSection step={3} onClick={prevStep} />
       <section className={styles.graySection}>
         <div>
@@ -21,19 +21,19 @@ const Step03 = ({ form, prevStep, handleChange }) => {
           <div className={styles.classType}>
             <EllipseButton
               element={"온라인"}
-              selected={form.update.online}
+              selected={form.online}
               id={"online"}
               onClick={handleChange("online")}
             />
             <EllipseButton
               element={"오프라인"}
-              selected={form.update.offline}
+              selected={form.offline}
               id={"offline"}
               onClick={handleChange("offline")}
             />
             <EllipseButton
               element={"장소 협의 가능"}
-              selected={form.update.discuss}
+              selected={form.discuss}
               id={"discuss"}
               onClick={handleChange("discuss")}
             />
@@ -45,24 +45,24 @@ const Step03 = ({ form, prevStep, handleChange }) => {
           <div className={styles.classType}>
             <EllipseButton
               element={"1:1 수업"}
-              selected={form.update.personal}
+              selected={form.personal}
               id={"personal"}
               onClick={handleChange("personal")}
             />
             <EllipseButton
               element={"그룹 수업"}
-              selected={form.update.group}
+              selected={form.group}
               id={"group"}
               onClick={handleChange("group")}
             />
           </div>
         </div>
 
-        {form.update.personal == "off" && form.update.group == "off" && (
+        {form.personal == "off" && form.group == "off" && (
           <div className={styles.basic} />
         )}
 
-        {form.update.personal == "on" && (
+        {form.personal == "on" && (
           <div>
             <h1 className={styles.title}>3. 1:1 수업 가격을 입력해주세요.</h1>
             <ClassCost
@@ -73,11 +73,11 @@ const Step03 = ({ form, prevStep, handleChange }) => {
           </div>
         )}
 
-        {form.update.group == "on" && (
+        {form.group == "on" && (
           <div>
             <h1 className={styles.title}>
-              {form.update.personal == "on" ? <span>4</span> : <span>3</span>}.
-              그룹 수업 가격을 입력해주세요.
+              {form.personal == "on" ? <span>4</span> : <span>3</span>}. 그룹
+              수업 가격을 입력해주세요.
             </h1>
             <ClassCost
               form={form}
@@ -90,8 +90,10 @@ const Step03 = ({ form, prevStep, handleChange }) => {
       <BottomSection
         text={"강의 업로드"}
         onClick={() => {
-          const menu = document.getElementById("uploadModal");
-          menu ? (menu.style.display = "block") : "";
+          const back = document.getElementById("uploadBack");
+          const modal = document.getElementById("uploadModal");
+          modal ? (modal.style.display = "block") : "";
+          back ? (back.style.display = "block") : "";
         }}
       />
     </div>

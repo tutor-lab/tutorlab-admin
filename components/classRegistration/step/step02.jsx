@@ -34,7 +34,7 @@ const Step02 = ({
             <SquareButton category={"강의 종류"} element={"개발"} />
             <SquareButton
               category={"언어"}
-              element={form.update.language}
+              element={form.language}
               showModal={showModal}
             />
           </div>
@@ -43,7 +43,7 @@ const Step02 = ({
           <h1 className={styles.title}>2. 강의 난이도를 선택해주세요.</h1>
           <SquareButton
             category={"강의 난이도"}
-            element={form.update.level}
+            element={form.level}
             showModal={showLevel}
           />
         </div>
