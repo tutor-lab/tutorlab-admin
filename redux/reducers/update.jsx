@@ -1,10 +1,14 @@
 import { createAction, handleActions } from "redux-actions";
 import produce from "immer";
+import createRequestSaga from "./createRequestSaga";
+import { createRequestActionTypes } from "./createRequestSaga";
 
 const INITIALIZE = "newclass/INITIALIZE";
 const CHANGE_FIELD = "newclass/CHANGE_FIELD";
 const NEXT_STEP = "newclass/NEXT_STEP";
 const PREV_STEP = "newclass/PREV_STEP";
+const [CLASSUPDATE, CLASSUPDATE_SUCCESS, CLASSUPDATE_FAILURE] =
+  createRequestActionTypes("newclass/UPDATE");
 
 export const Initialize = createAction(INITIALIZE);
 export const ChangeField = createAction(
@@ -13,6 +17,11 @@ export const ChangeField = createAction(
 );
 export const NextStep = createAction(NEXT_STEP, (form) => form);
 export const PrevStep = createAction(PREV_STEP, (form) => form);
+export const ClassUpdate = createAction(CLASSUPDATE, (form) => form);
+
+export function UpdateSaga() {
+  createRequestSaga(CLASSUPDATE /*axios*/);
+}
 
 const initialState = {
   update: {
@@ -36,6 +45,8 @@ const initialState = {
     personal: "off",
     group: "off",
   },
+  updateSuccess: null,
+  updateError: null,
 };
 
 const Update = handleActions(
@@ -53,7 +64,18 @@ const Update = handleActions(
       produce(state, (draft) => {
         draft["update"]["step"] -= 1;
       }),
+    [CLASSUPDATE_SUCCESS]: (state, { payload: updateSuccess }) => ({
+      ...state,
+      updateSuccess,
+      updateError: null,
+    }),
+    [CLASSUPDATE_FAILURE]: (state, { payload: updateError }) => ({
+      ...state,
+      updateSuccess: null,
+      updateError,
+    }),
   },
   initialState
 );
+
 export default Update;
