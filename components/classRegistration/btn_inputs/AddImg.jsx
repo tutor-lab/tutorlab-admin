@@ -5,7 +5,7 @@ const AddImg = ({ form, preview }) => {
     <>
       {preview.selectedFile ? (
         <BasicBox />
-      ) : form.update.image ? (
+      ) : form.image ? (
         <ImgBox preview={preview} />
       ) : (
         <BasicBox />

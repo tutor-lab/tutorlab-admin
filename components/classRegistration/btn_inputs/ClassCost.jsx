@@ -1,5 +1,5 @@
 import styles from "./selectButton.module.scss";
-const ShortSquare = ({ definition, unit, placeholder, onChange }) => {
+const ShortSquare = ({ definition, unit, placeholder, onChange, value }) => {
   return (
     <div className={styles.shortSquare}>
       <span className={styles.definition}>{definition}</span>
@@ -9,6 +9,7 @@ const ShortSquare = ({ definition, unit, placeholder, onChange }) => {
           className={styles.inputBox}
           placeholder={placeholder}
           onChange={onChange}
+          value={value}
         />
         <span className={styles.unit}>{unit}</span>
       </div>
@@ -38,6 +39,15 @@ const ClassCost = ({ form, handleChange, distinct }) => {
               ? handleChange("PpricePerHour")
               : handleChange("GpricePerHour")
           }
+          value={
+            distinct == "personal"
+              ? form.PpricePerHour == 0
+                ? ""
+                : form.PpricePerHour
+              : form.GpricePerHour == 0
+              ? ""
+              : form.GpricePerHour
+          }
         />
         <span className={styles.mult}>X</span>
         <ShortSquare
@@ -48,6 +58,15 @@ const ClassCost = ({ form, handleChange, distinct }) => {
             distinct == "personal"
               ? handleChange("PtimePerClass")
               : handleChange("GtimePerClass")
+          }
+          value={
+            distinct == "personal"
+              ? form.PtimePerClass == 0
+                ? ""
+                : form.PtimePerClass
+              : form.GtimePerClass == 0
+              ? ""
+              : form.GtimePerClass
           }
         />
         <span className={styles.mult}>X</span>
@@ -60,6 +79,15 @@ const ClassCost = ({ form, handleChange, distinct }) => {
               ? handleChange("PnumOfTimes")
               : handleChange("GnumOfTimes")
           }
+          value={
+            distinct == "personal"
+              ? form.PnumOfTimes == 0
+                ? ""
+                : form.PnumOfTimes
+              : form.GnumOfTimes == 0
+              ? ""
+              : form.GnumOfTimes
+          }
         />
       </div>
       <div className={styles.total}>
@@ -68,14 +96,14 @@ const ClassCost = ({ form, handleChange, distinct }) => {
           price={
             distinct == "personal"
               ? (
-                  form.update.PpricePerHour *
-                  form.update.PtimePerClass *
-                  form.update.PnumOfTimes
+                  form.PpricePerHour *
+                  form.PtimePerClass *
+                  form.PnumOfTimes
                 ).toLocaleString("ko-KR")
               : (
-                  form.update.GpricePerHour *
-                  form.update.GtimePerClass *
-                  form.update.GnumOfTimes
+                  form.GpricePerHour *
+                  form.GtimePerClass *
+                  form.GnumOfTimes
                 ).toLocaleString("ko-KR")
           }
         />

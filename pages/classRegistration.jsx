@@ -10,15 +10,13 @@ import MyClass from "./myclass";
 import Step01 from "../components/classRegistration/step/step01";
 import Step02 from "../components/classRegistration/step/step02";
 import Step03 from "../components/classRegistration/step/step03";
-import Modal from "../components/classRegistration/Modal";
 
 const ClassRegistration = () => {
   const dispatch = useDispatch();
   const { form } = useSelector(({ update }) => ({
-    form: update,
+    form: update.update,
   }));
-
-  const step = form.update.step;
+  const step = form.step;
   const onChange = (name) => (e) => {
     //update values
     var value = e.target.value;
@@ -50,19 +48,19 @@ const ClassRegistration = () => {
         value = level;
         break;
       case "online":
-        value = form.update.online == "on" ? "off" : "on";
+        value = form.online == "on" ? "off" : "on";
         break;
       case "offline":
-        value = form.update.offline == "on" ? "off" : "on";
+        value = form.offline == "on" ? "off" : "on";
         break;
       case "discuss":
-        value = form.update.discuss == "on" ? "off" : "on";
+        value = form.discuss == "on" ? "off" : "on";
         break;
       case "personal":
-        value = form.update.personal == "on" ? "off" : "on";
+        value = form.personal == "on" ? "off" : "on";
         break;
       case "group":
-        value = form.update.group == "on" ? "off" : "on";
+        value = form.group == "on" ? "off" : "on";
         break;
       default:
         break;
