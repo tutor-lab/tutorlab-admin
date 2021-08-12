@@ -1,7 +1,7 @@
 import router from "next/router";
 import styles from "../styles/myclass.module.scss";
-import ClassCard from "./classcard";
-import BottomTab from "./bottomtab";
+import ClassCard from "../components/classcard";
+import BottomTab from "../components/bottomtab";
 import Data from "../data.json";
 
 const MyClass = ({}) => {

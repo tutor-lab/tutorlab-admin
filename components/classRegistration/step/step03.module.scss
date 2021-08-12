@@ -1,0 +1,49 @@
+.step03 {
+  margin: 0 auto;
+  width: 375px;
+  height: 100vh;
+  .background {
+    display: none;
+    position: fixed;
+    width: 375px;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: 9999;
+    .uploadModal {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+  .graySection {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background-color: #f3f5f8;
+    padding: 22px 33px 140px 21px;
+    .basic {
+      height: 120px;
+      background-color: #f3f5f8;
+    }
+    .title {
+      font-size: 13px;
+      font-weight: 400;
+      line-height: 1.69;
+      color: #283237;
+      margin: 0;
+    }
+    .cf {
+      display: block;
+      font-size: 13px;
+      font-weight: 400;
+      line-height: 1.69;
+      color: #949bad;
+      margin-bottom: 16px;
+      margin-left: 10px;
+    }
+    .classType {
+      margin-bottom: 20px;
+    }
+  }
+}
