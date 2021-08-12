@@ -7,7 +7,12 @@ const Dynamic = dynamic(
 );
 
 const Quill = () => {
-  return <Dynamic />;
+  const onChange = (e,content,delta,source) =>{
+    console.log('ee',e)
+  }
+
+
+  return <Dynamic onChange={onChange}/>;
 };
 
 export default Quill;
