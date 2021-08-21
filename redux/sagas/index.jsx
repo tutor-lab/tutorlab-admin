@@ -1,10 +1,6 @@
-import { UpdateSaga } from "../reducers/update";
+import { Saga } from "../reducers/update";
+import { all } from "@redux-saga/core/effects";
 export default function* rootSaga() {
-  yield all([UpdateSaga()]);
+  console.log("rootSaga");
+  yield all([Saga()]);
 }
-
-/*
-export default function* rootSaga() {
-  console.log("exmaple saga");
-}
-*/
