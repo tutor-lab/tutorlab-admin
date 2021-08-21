@@ -1,4 +1,3 @@
-import Image from "next/image";
 import styles from "./step02.module.scss";
 import WhiteSection from "../WhiteSection";
 import BottomSection from "../BottomSection";
@@ -6,6 +5,7 @@ import SquareButton from "../btn_inputs/SquareButton";
 import Quill from "../../quillEditor/QuillDynamic";
 import LanguageModal from "../LanguageModal";
 import { LevelModal } from "../LanguageModal";
+import { AddBtn, DeleteBtn } from "../btn_inputs/AddDeleteBtn";
 const Step02 = ({
   form,
   nextStep,
@@ -13,9 +13,11 @@ const Step02 = ({
   handleChange,
   showModal,
   showLevel,
+  MoveStep,
+  Close,
 }) => {
   return (
-    <div className={styles.step02}>
+    <div className={styles.step02} onClick={Close}>
       <div className={styles.background} id="LanBackground">
         <div className={styles.modal} id="languageModal">
           <LanguageModal handleChange={handleChange} />
@@ -26,22 +28,26 @@ const Step02 = ({
           <LevelModal handleChange={handleChange} />
         </div>
       </div>
-      <WhiteSection step={2} onClick={prevStep} />
+      <WhiteSection step={2} onClick={prevStep} MoveStep={MoveStep} />
       <section className={styles.graySection}>
         <div className={styles.margin}>
           <h1 className={styles.title}>1. 강의 종류를 선택해주세요.</h1>
           <div className={styles.classType}>
             <SquareButton category={"강의 종류"} element={"개발"} />
             <SquareButton
+              id="languageBtn"
               category={"언어"}
               element={form.language}
               showModal={showModal}
             />
+            <DeleteBtn /> {/* 수정 예정 */}
           </div>
+          <AddBtn />
         </div>
         <div className={styles.margin}>
           <h1 className={styles.title}>2. 강의 난이도를 선택해주세요.</h1>
           <SquareButton
+            id="levelBtn"
             category={"강의 난이도"}
             element={form.level}
             showModal={showLevel}
