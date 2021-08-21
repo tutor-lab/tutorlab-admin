@@ -33,8 +33,10 @@
       }
       .classType {
         display: flex;
-        width: 282px;
+        width: 310px;
         justify-content: space-between;
+        align-items: center;
+        margin-bottom: 12px;
       }
       .example {
         font-size: 13px;

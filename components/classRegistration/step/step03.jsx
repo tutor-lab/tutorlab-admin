@@ -5,7 +5,7 @@ import EllipseButton from "../btn_inputs/EllipseButton";
 import ClassCost from "../btn_inputs/ClassCost";
 import { BlueModal } from "../Modal";
 
-const Step03 = ({ form, prevStep, handleChange }) => {
+const Step03 = ({ form, prevStep, handleChange, handleSubmit, MoveStep }) => {
   return (
     <div className={styles.step03}>
       <div className={styles.background} id="uploadBack">
@@ -13,7 +13,7 @@ const Step03 = ({ form, prevStep, handleChange }) => {
           <BlueModal />
         </div>
       </div>{" "}
-      <WhiteSection step={3} onClick={prevStep} />
+      <WhiteSection step={3} onClick={prevStep} MoveStep={MoveStep} />
       <section className={styles.graySection}>
         <div>
           <h1 className={styles.title}>1. 강의 방식1을 선택해주세요.</h1>
@@ -49,12 +49,27 @@ const Step03 = ({ form, prevStep, handleChange }) => {
               id={"personal"}
               onClick={handleChange("personal")}
             />
-            <EllipseButton
-              element={"그룹 수업"}
-              selected={form.group}
-              id={"group"}
-              onClick={handleChange("group")}
-            />
+            <div className={styles.group}>
+              <EllipseButton
+                element={"그룹 수업"}
+                selected={form.group}
+                id={"group"}
+                onClick={handleChange("group")}
+              />
+              {form.group == "on" ? (
+                <div className={styles.groupMax}>
+                  <input
+                    type="number"
+                    onChange={handleChange("groupMax")}
+                    className={styles.maxInput}
+                  />
+                  <span className={styles.guide1}>최대</span>
+                  <span className={styles.guide2}>명</span>
+                </div>
+              ) : (
+                <></>
+              )}
+            </div>
           </div>
         </div>
 
@@ -89,12 +104,13 @@ const Step03 = ({ form, prevStep, handleChange }) => {
       </section>
       <BottomSection
         text={"강의 업로드"}
-        onClick={() => {
-          const back = document.getElementById("uploadBack");
-          const modal = document.getElementById("uploadModal");
-          modal ? (modal.style.display = "block") : "";
-          back ? (back.style.display = "block") : "";
-        }}
+        handleSubmit={handleSubmit}
+        // onClick={() => {
+        //   const back = document.getElementById("uploadBack");
+        //   const modal = document.getElementById("uploadModal");
+        //   modal ? (modal.style.display = "block") : "";
+        //   back ? (back.style.display = "block") : "";
+        // }}
       />
     </div>
   );

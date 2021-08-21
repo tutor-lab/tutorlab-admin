@@ -5,6 +5,8 @@ import {
   Initialize,
   NextStep,
   PrevStep,
+  MoveStep,
+  ClassUpdate,
 } from "../redux/reducers/update";
 import MyClass from "./myclass";
 import Step01 from "../components/classRegistration/step/step01";
@@ -18,7 +20,6 @@ const ClassRegistration = () => {
   }));
   const step = form.step;
   const onChange = (name) => (e) => {
-    //update values
     var value = e.target.value;
     switch (name) {
       case "maintitle":
@@ -75,6 +76,11 @@ const ClassRegistration = () => {
     );
   };
 
+  const onSubmit = (e) => {
+    e.preventDefault();
+    dispatch(ClassUpdate(form));
+  };
+
   const Next = (e) => {
     //이전 페이지
     e.preventDefault();
@@ -85,6 +91,11 @@ const ClassRegistration = () => {
     //다음 페이지
     e.preventDefault();
     dispatch(PrevStep());
+  };
+
+  const RandomMove = (step) => {
+    //1,2,3단계 버튼 눌렀을 때 페이지 이동하도록
+    dispatch(MoveStep(step));
   };
 
   const [preview, setPreview] = useState({ selectedFile: [] });
@@ -108,6 +119,13 @@ const ClassRegistration = () => {
       alert(`최대 ${limit}자까지 작성하실 수 있습니다.`);
       e.target.value = e.target.value.substring(0, limit);
     }
+  };
+  const Close = () => {
+    //focus 빗나갔을 때 modal 닫히도록
+    const background = document.getElementById("LanBackground");
+    window.addEventListener("click", (e) => {
+      e.target === background ? hideModal() : false;
+    });
   };
 
   const showModal = () => {
@@ -165,6 +183,7 @@ const ClassRegistration = () => {
     const gray = document.getElementById("grayOne");
     gray ? (gray.style.display = "none") : "";
   };
+
   const radiobox = (num) => {
     //체크한 라디오박스 구별
     const check =
@@ -192,6 +211,7 @@ const ClassRegistration = () => {
           preview={preview}
           showGray={showGray}
           hideGray={hideGray}
+          MoveStep={RandomMove}
         />
       );
     case 2:
@@ -204,6 +224,8 @@ const ClassRegistration = () => {
           handleChange={onChange}
           showModal={showModal}
           showLevel={showLevel}
+          MoveStep={RandomMove}
+          Close={Close}
         />
       );
     case 3:
@@ -213,6 +235,8 @@ const ClassRegistration = () => {
           form={form}
           prevStep={Prev}
           handleChange={onChange}
+          handleSubmit={onSubmit}
+          MoveStep={RandomMove}
         />
       );
 

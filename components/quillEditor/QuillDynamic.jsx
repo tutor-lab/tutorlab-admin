@@ -1,4 +1,6 @@
 import dynamic from "next/dynamic";
+import { useDispatch } from "react-redux";
+import { ChangeField } from "../../redux/reducers/update";
 const Dynamic = dynamic(
   () => {
     return import("./EditorComponent");
@@ -7,12 +9,18 @@ const Dynamic = dynamic(
 );
 
 const Quill = () => {
-  const onChange = (e,content,delta,source) =>{
-    console.log('ee',e)
-  }
-
-
-  return <Dynamic onChange={onChange}/>;
+  const dispatch = useDispatch();
+  const onChange = (e, content, delta, source) => {
+    var value = e;
+    dispatch(
+      ChangeField({
+        form: "update",
+        key: "content",
+        value,
+      })
+    );
+  };
+  return <Dynamic onChange={onChange} />;
 };
 
 export default Quill;

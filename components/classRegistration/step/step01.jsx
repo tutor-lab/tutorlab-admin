@@ -12,6 +12,7 @@ const Step01 = ({
   preview,
   showGray,
   hideGray,
+  MoveStep,
 }) => {
   return (
     <div className={styles.step01}>
@@ -20,7 +21,7 @@ const Step01 = ({
           <GrayModal hideGray={hideGray} id="grayOne" />
         </div>
       </div>
-      <WhiteSection step={1} onClick={showGray} />
+      <WhiteSection step={1} onClick={showGray} MoveStep={MoveStep} />
       <section className={styles.graySection}>
         <div>
           <h3 className={styles.question}>
