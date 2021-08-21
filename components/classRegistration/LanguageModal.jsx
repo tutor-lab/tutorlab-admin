@@ -29,10 +29,11 @@ export const LanguageModal = ({ handleChange }) => {
       ></Language>
       <input
         type="text"
-        placeholder="직접 입력하기"
+        placeholder="직접 입력 후 엔터키"
         className={styles.last}
         onKeyPress={handleChange("languageInput")}
         id="modalInput"
+        name="languageInput"
       />
     </div>
   );
@@ -75,7 +76,8 @@ const Level = ({ level, select, handleChange }) => {
 export const LevelModal = ({ handleChange }) => {
   return (
     <div className={styles.modal} id="level">
-      <Level level={"초급"} select={1} handleChange={handleChange}></Level>
+      <Level level={"입문"} select={1} handleChange={handleChange}></Level>
+      <Level level={"초급"} select={2} handleChange={handleChange}></Level>
       <Level level={"중급"} select={2} handleChange={handleChange}></Level>
       <Level level={"고급"} select={3} handleChange={handleChange}></Level>
     </div>
