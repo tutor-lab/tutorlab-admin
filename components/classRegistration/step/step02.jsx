@@ -63,7 +63,10 @@ const Step02 = ({
             <li>강의 예시화면 - gif 등록 가능(00mb 이하)</li>
           </ul>
         </div>
-        <Quill className={styles.quillEditor} />
+        <Quill 
+          className={styles.quillEditor} 
+          handleChange={handleChange}
+        />
       </section>
       <BottomSection text={"다음"} onClick={nextStep} />
     </div>

@@ -29,7 +29,12 @@ const Step01 = ({
           </h3>
           <label htmlFor="classImg">
             <AddImg form={form} preview={preview} />
-            <input type="file" id="classImg" onChange={handleChange("image")} />
+            <input 
+                  type="file" 
+                  id="classImg" 
+                  src={preview}
+                  onChange={handleChange("image")} 
+                  />
           </label>
         </div>
 
