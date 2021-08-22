@@ -3,13 +3,12 @@ import axios from "axios";
 //http://3.35.255.192:8081
 axios.defaults.baseURL = "http://localhost:8081";
 axios.interceptors.request.use(function (config) {
-  const token = localStorage.getItem('accessToken');
-  if (token) {    
-    config.headers.Authorization = 'Bearer ' + token;
+  const token = localStorage.getItem("accessToken");
+  if (token) {
+    config.headers.Authorization = "Bearer " + token;
   }
   return config;
 });
-//헤더 추가(토큰)
 export const ClassReg = async (form) => {
   let level = "입문";
   switch (form.level) {
@@ -44,7 +43,7 @@ export const ClassReg = async (form) => {
               form.PpricePerHour * form.PnumOfTimes * form.PtimePerClass, //총 비용
             totalTime: form.PnumOfTimes * form.PtimePerClass, //총 강의 시간
           }
-        :{
+        : {
             //group일 때
             groupNumber: form.groupMax, //그룹 수용가능 인원
             isGroup: true,
@@ -53,8 +52,7 @@ export const ClassReg = async (form) => {
             totalCost:
               form.GpricePerHour * form.GnumOfTimes * form.GtimePerClass, //총 비용
             totalTime: form.GnumOfTimes * form.GtimePerClass, //총 강의 시간
-          }
-        ,
+          },
     ],
     subTitle: form.subheading,
     subjects: [
@@ -64,26 +62,23 @@ export const ClassReg = async (form) => {
         parent: "1",
       },
     ],
-    systems: [
-      
-      form.online == "on" ? "ONLINE":"OFFLINE" 
-    ],
+    systems: [form.online == "on" ? "ONLINE" : "OFFLINE"],
     thumbnailUrl: form.image,
     title: form.maintitle,
-  }
-  console.log(data)
+  };
+  console.log(data);
   await axios({
     method: "POST",
     url: "/lectures",
     data: data,
   })
-  .then((response) => {
-    console.log(data);
-    console.log(response);
-    return response;
-  })
-  .catch((error) => {
-    errormsg = error.response;
-    return Promise.reject(errormsg);
-  });
+    .then((response) => {
+      console.log(data);
+      console.log(response);
+      return response;
+    })
+    .catch((error) => {
+      errormsg = error.response;
+      return Promise.reject(errormsg);
+    });
 };
