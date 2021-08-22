@@ -5,7 +5,7 @@ const BottomSection = ({ text, onClick, handleSubmit }) => {
     <section className={styles.fixed}>
       {text == "강의 업로드" ? (
         <form onSubmit={handleSubmit}>
-          <button type="submit" className={styles.next}>
+          <button type="submit" className={styles.next} onClick={onClick}>
             {text}
           </button>
         </form>
