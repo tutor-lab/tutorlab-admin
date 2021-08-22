@@ -1,15 +1,15 @@
 import styles from "./addDelete.module.scss";
-const AddBtn = ({ handleClick }) => {
+const AddBtn = ({ onClick }) => {
   return (
-    <button type="button" className={styles.addBtn} onClick={handleClick}>
+    <button type="button" className={styles.addBtn} onClick={onClick}>
       <span className={styles.addText}>추가</span>
     </button>
   );
 };
 
-const DeleteBtn = () => {
+const DeleteBtn = ({ onClick }) => {
   return (
-    <button type="button" className={styles.deleteBtn}>
+    <button type="button" className={styles.deleteBtn} onClick={onClick}>
       <span className={styles.deleteText}>⨉</span>
     </button>
   );
