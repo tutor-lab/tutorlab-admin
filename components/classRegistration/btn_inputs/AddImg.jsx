@@ -1,12 +1,13 @@
 import styles from "./addImg.module.scss";
 import Image from "next/image";
+
 const AddImg = ({ form, preview }) => {
   return (
     <>
       {preview.selectedFile ? (
         <BasicBox />
       ) : form.image ? (
-        <ImgBox preview={preview} />
+        <ImgBox preview={preview} form={form}/>
       ) : (
         <BasicBox />
       )}
@@ -32,15 +33,19 @@ const BasicBox = () => {
   );
 };
 
-const ImgBox = ({ preview }) => {
+const ImgBox = ({ preview,form }) => {
+
   return (
     <div className={styles.add2}>
-      <Image
-        width="141px"
-        height="141px"
-        src={`data:image/png;base64,${preview}`}
-        alt="강의 대표 이미지"
-      />
+      {preview.length>0 &&(
+        <Image
+          width="141px"
+          height="141px"
+          src={preview}
+          alt="강의 대표 이미지"
+        />
+      )}
+      
     </div>
   );
 };

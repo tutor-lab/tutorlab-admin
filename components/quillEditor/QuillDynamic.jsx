@@ -1,3 +1,4 @@
+import {useState} from 'react'
 import dynamic from "next/dynamic";
 import { useDispatch } from "react-redux";
 import { ChangeField } from "../../redux/reducers/update";
@@ -10,8 +11,10 @@ const Dynamic = dynamic(
 
 const Quill = () => {
   const dispatch = useDispatch();
+  const [content,setContent] = useState('')
   const onChange = (e, content, delta, source) => {
-    var value = e;
+    var value = e
+    setContent(e)
     dispatch(
       ChangeField({
         form: "update",
@@ -20,7 +23,7 @@ const Quill = () => {
       })
     );
   };
-  return <Dynamic onChange={onChange} />;
+  return <Dynamic value={content} onChange={onChange} />;
 };
 
 export default Quill;

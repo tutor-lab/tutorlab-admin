@@ -1,7 +1,6 @@
 
 import React, {useState, useEffect, useReducer} from 'react';
 import {Container, Row, Col, Label, InputGroup, Input} from 'reactstrap';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import {BsChevronLeft} from 'react-icons/bs';
 import {CgMathPlus} from 'react-icons/cg';
 import styles from "../styles/signup2.module.scss";

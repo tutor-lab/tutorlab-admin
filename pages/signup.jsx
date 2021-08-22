@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {Container, Row, Col, Label, Input, InputGroup, Button} from 'reactstrap';
 import styles from "../styles/signup.module.scss";
-import 'bootstrap/dist/css/bootstrap.min.css';
 import {BsChevronLeft} from 'react-icons/bs';
 import {isLength, isAlphanumeric, isEmail} from 'validator';
 import Router from 'next/router';

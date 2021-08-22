@@ -12,15 +12,18 @@ import MyClass from "./myclass";
 import Step01 from "../components/classRegistration/step/step01";
 import Step02 from "../components/classRegistration/step/step02";
 import Step03 from "../components/classRegistration/step/step03";
+import axios from 'axios';
 
 const ClassRegistration = () => {
+
+  const [preview, setPreview] = useState("");
   const dispatch = useDispatch();
   const { form } = useSelector(({ update }) => ({
     form: update.update,
   }));
   const step = form.step;
-  const onChange = (name) => (e) => {
-    var value = e.target.value;
+  const onChange = (name) => async (e) => {
+    let value = e.target.value;
     switch (name) {
       case "maintitle":
         TextLimit(e, 40);
@@ -32,7 +35,8 @@ const ClassRegistration = () => {
         value = e.target.value;
         break;
       case "image":
-        ImagePreview(e);
+        const previewImg =await ImagePreview(e);
+        value = previewImg
         break;
       case "language":
         const selected = radiobox(1);
@@ -98,19 +102,26 @@ const ClassRegistration = () => {
     dispatch(MoveStep(step));
   };
 
-  const [preview, setPreview] = useState({ selectedFile: [] });
+  
   const ImagePreview = (e) => {
     //이미지 프리뷰
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      const base64 = reader.result;
-      if (base64) {
-        setPreview(base64.toString().split(",")[1]);
-      }
-    };
+    let resImg=""
     if (e.target.files[0]) {
-      reader.readAsDataURL(e.target.files[0]);
+      // reader.readAsDataURL(e.target.files[0]);
+      const formData = new FormData();
+      formData.append("file", e.target.files[0]);
+      resImg = axios.post("/uploads/images",formData)
+              .then((response)=>{
+                setPreview(response.data.url)
+                return response.data.url
+              })
+              .catch((e)=>{
+
+              })
     }
+    console.log('resImg==',resImg)
+    return resImg
+    // return fileName
   };
 
   const TextLimit = (e, limit) => {

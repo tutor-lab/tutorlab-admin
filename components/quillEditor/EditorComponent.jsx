@@ -16,14 +16,13 @@ class EditorComponent extends Component {
     input.onchange = async () => {
       const file = input.files[0];
       const formData = new FormData();
-      let src = "";
       formData.append("file", file);
       // Save current cursor state
 
       const resImage = await axios
-        .post("http://localhost:9090/uploads/images", formData)
+        .post("/uploads/images", formData)
         .then(function (response) {
-          return response.data.result.url;
+          return response.data.url;
         })
         .catch(function (error) {
           console.log(error);
