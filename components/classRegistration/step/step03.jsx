@@ -10,7 +10,7 @@ const Step03 = ({ form, prevStep, handleChange, handleSubmit, MoveStep }) => {
     <div className={styles.step03}>
       <div className={styles.background} id="uploadBack">
         <div className={styles.uploadModal} id="uploadModal">
-          <BlueModal id="blueOne" />
+          <BlueModal />
         </div>
       </div>{" "}
       <WhiteSection step={3} onClick={prevStep} MoveStep={MoveStep} />
