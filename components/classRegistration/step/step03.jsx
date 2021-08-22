@@ -10,7 +10,7 @@ const Step03 = ({ form, prevStep, handleChange, handleSubmit, MoveStep }) => {
     <div className={styles.step03}>
       <div className={styles.background} id="uploadBack">
         <div className={styles.uploadModal} id="uploadModal">
-          <BlueModal />
+          <BlueModal id="blueOne" />
         </div>
       </div>{" "}
       <WhiteSection step={3} onClick={prevStep} MoveStep={MoveStep} />
@@ -105,13 +105,14 @@ const Step03 = ({ form, prevStep, handleChange, handleSubmit, MoveStep }) => {
       <BottomSection
         text={"강의 업로드"}
         handleSubmit={handleSubmit}
-        // onClick={() => {
-        //   const back = document.getElementById("uploadBack");
-        //   const modal = document.getElementById("uploadModal");
-        //   modal ? (modal.style.display = "block") : "";
-        //   back ? (back.style.display = "block") : "";
-        // }}
-      />
+        onClick={() => {
+          const back = document.getElementById("uploadBack");
+          const modal = document.getElementById("uploadModal");
+          modal ? (modal.style.display = "block") : "";
+          back ? (back.style.display = "block") : "";
+        }}
+      />{" "}
+      {/*업로드되었습니다. 모달 창 띄우는 부분*/}
     </div>
   );
 };
