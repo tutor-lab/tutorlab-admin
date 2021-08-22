@@ -7,16 +7,19 @@ import {
   PrevStep,
   MoveStep,
   ClassUpdate,
+  AddClass,
+  DeleteClass,
+  InputClass,
 } from "../redux/reducers/update";
 import MyClass from "./myclass";
 import Step01 from "../components/classRegistration/step/step01";
 import Step02 from "../components/classRegistration/step/step02";
 import Step03 from "../components/classRegistration/step/step03";
-import axios from 'axios';
+import axios from "axios";
 
 const ClassRegistration = () => {
-
   const [preview, setPreview] = useState("");
+  const [currentI, setCurrentI] = useState(0);
   const dispatch = useDispatch();
   const { form } = useSelector(({ update }) => ({
     form: update.update,
@@ -35,8 +38,8 @@ const ClassRegistration = () => {
         value = e.target.value;
         break;
       case "image":
-        const previewImg =await ImagePreview(e);
-        value = previewImg
+        const previewImg = await ImagePreview(e);
+        value = previewImg;
         break;
       case "language":
         const selected = radiobox(1);
@@ -70,12 +73,41 @@ const ClassRegistration = () => {
       default:
         break;
     }
+    if (name == "language") {
+      dispatch(
+        InputClass({
+          form: "update",
+          key: name,
+          index: currentI,
+          value: value,
+        })
+      );
+    } else {
+      dispatch(
+        ChangeField({
+          form: "update",
+          key: name,
+          value,
+        })
+      );
+    }
+  };
 
+  const AddingClass = () => {
     dispatch(
-      ChangeField({
+      AddClass({
         form: "update",
-        key: name,
-        value,
+        key: "language",
+      })
+    );
+  };
+
+  const DeletingClass = (i) => {
+    dispatch(
+      DeleteClass({
+        form: "update",
+        key: "language",
+        index: i,
       })
     );
   };
@@ -102,25 +134,23 @@ const ClassRegistration = () => {
     dispatch(MoveStep(step));
   };
 
-  
   const ImagePreview = (e) => {
     //이미지 프리뷰
-    let resImg=""
+    let resImg = "";
     if (e.target.files[0]) {
       // reader.readAsDataURL(e.target.files[0]);
       const formData = new FormData();
       formData.append("file", e.target.files[0]);
-      resImg = axios.post("/uploads/images",formData)
-              .then((response)=>{
-                setPreview(response.data.url)
-                return response.data.url
-              })
-              .catch((e)=>{
-
-              })
+      resImg = axios
+        .post("/uploads/images", formData)
+        .then((response) => {
+          setPreview(response.data.url);
+          return response.data.url;
+        })
+        .catch((e) => {});
     }
-    console.log('resImg==',resImg)
-    return resImg
+    console.log("resImg==", resImg);
+    return resImg;
     // return fileName
   };
 
@@ -139,7 +169,7 @@ const ClassRegistration = () => {
     });
   };
 
-  const showModal = () => {
+  const showModal = (i) => {
     //modal 보이게
     const menu = document.getElementById("menu");
     menu ? (menu.style.display = "block") : "";
@@ -147,6 +177,7 @@ const ClassRegistration = () => {
     back ? (back.style.display = "block") : "";
     const modal = document.getElementById("languageModal");
     modal ? (modal.style.display = "block") : "";
+    setCurrentI(i);
   };
 
   const hideModal = () => {
@@ -237,6 +268,8 @@ const ClassRegistration = () => {
           showLevel={showLevel}
           MoveStep={RandomMove}
           Close={Close}
+          AddingClass={AddingClass}
+          DeletingClass={DeletingClass}
         />
       );
     case 3:

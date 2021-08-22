@@ -1,37 +1,21 @@
 import styles from "./languageModal.module.scss";
-export const LanguageModal = ({ handleChange }) => {
+export const LanguageModal = ({ ChangingClass }) => {
   return (
     <div className={styles.modal} id="menu">
-      <Language
-        language={"Java"}
-        select={1}
-        handleChange={handleChange}
-      ></Language>
+      <Language language={"Java"} select={1} ChangingClass={ChangingClass} />
       <Language
         language={"JavaScript"}
         select={2}
-        handleChange={handleChange}
-      ></Language>
-      <Language
-        language={"Python"}
-        select={2}
-        handleChange={handleChange}
-      ></Language>
-      <Language
-        language={"SQL"}
-        select={2}
-        handleChange={handleChange}
-      ></Language>
-      <Language
-        language={"R"}
-        select={2}
-        handleChange={handleChange}
-      ></Language>
+        ChangingClass={ChangingClass}
+      />
+      <Language language={"Python"} select={2} ChangingClass={ChangingClass} />
+      <Language language={"SQL"} select={2} ChangingClass={ChangingClass} />
+      <Language language={"R"} select={2} ChangingClass={ChangingClass} />
       <input
         type="text"
         placeholder="직접 입력 후 엔터키"
         className={styles.last}
-        onKeyPress={handleChange("languageInput")}
+        onKeyPress={ChangingClass("languageInput")}
         id="modalInput"
         name="languageInput"
       />
@@ -39,12 +23,12 @@ export const LanguageModal = ({ handleChange }) => {
   );
 };
 
-const Language = ({ language, select, handleChange }) => {
+const Language = ({ language, select, ChangingClass }) => {
   return (
     <label htmlFor={language}>
       <div
         className={select == 1 ? styles.first : styles.modalElement}
-        onClick={handleChange("language")}
+        onClick={ChangingClass("language")}
       >
         <input type="radio" name="modalElement" id={language} />
         {language}

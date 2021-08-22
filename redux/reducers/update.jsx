@@ -7,6 +7,9 @@ import { takeLatest } from "@redux-saga/core/effects";
 
 const INITIALIZE = "newclass/INITIALIZE";
 const CHANGE_FIELD = "newclass/CHANGE_FIELD";
+const ADD_CLASS = "newclass/ADD_CLASS";
+const DELETE_CLASS = "newclass/DELETE_CLASS";
+const INPUT_CLASS = "newclass/INPUT_CLASS";
 const NEXT_STEP = "newclass/NEXT_STEP";
 const PREV_STEP = "newclass/PREV_STEP";
 const MOVE_STEP = "newclass/MOVE_STEP";
@@ -18,6 +21,24 @@ export const ChangeField = createAction(
   CHANGE_FIELD,
   ({ form, key, value }) => ({ form, key, value })
 );
+export const AddClass = createAction(ADD_CLASS, ({ form, key }) => ({
+  form,
+  key,
+}));
+
+export const DeleteClass = createAction(
+  DELETE_CLASS,
+  ({ form, key, index }) => ({
+    form,
+    key,
+    index,
+  })
+);
+export const InputClass = createAction(
+  INPUT_CLASS,
+  ({ form, key, index, value }) => ({ form, key, index, value })
+);
+
 export const NextStep = createAction(NEXT_STEP, (form) => form);
 export const PrevStep = createAction(PREV_STEP, (form) => form);
 export const MoveStep = createAction(MOVE_STEP, (form) => form);
@@ -35,7 +56,7 @@ const initialState = {
     subheading: "",
     introduction: "",
     classtype: "개발",
-    language: "Java",
+    language: ["Java"],
     level: "입문",
     PpricePerHour: 0,
     PtimePerClass: 0,
@@ -61,6 +82,18 @@ const Update = handleActions(
     [CHANGE_FIELD]: (state, { payload: { form, key, value } }) =>
       produce(state, (draft) => {
         draft[form][key] = value;
+      }),
+    [ADD_CLASS]: (state, { payload: { form, key } }) =>
+      produce(state, (draft) => {
+        draft[form][key].push("Java");
+      }),
+    [DELETE_CLASS]: (state, { payload: { form, key, index } }) =>
+      produce(state, (draft) => {
+        draft[form][key].splice(index, 1);
+      }),
+    [INPUT_CLASS]: (state, { payload: { form, key, index, value } }) =>
+      produce(state, (draft) => {
+        draft[form][key][index] = value;
       }),
     [NEXT_STEP]: (state) =>
       produce(state, (draft) => {

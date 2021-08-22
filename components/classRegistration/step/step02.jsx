@@ -1,4 +1,5 @@
 import styles from "./step02.module.scss";
+import style2 from "../btn_inputs/addDelete.module.scss";
 import WhiteSection from "../WhiteSection";
 import BottomSection from "../BottomSection";
 import SquareButton from "../btn_inputs/SquareButton";
@@ -6,6 +7,7 @@ import Quill from "../../quillEditor/QuillDynamic";
 import LanguageModal from "../LanguageModal";
 import { LevelModal } from "../LanguageModal";
 import { AddBtn, DeleteBtn } from "../btn_inputs/AddDeleteBtn";
+
 const Step02 = ({
   form,
   nextStep,
@@ -15,12 +17,14 @@ const Step02 = ({
   showLevel,
   MoveStep,
   Close,
+  AddingClass,
+  DeletingClass,
 }) => {
   return (
     <div className={styles.step02} onClick={Close}>
       <div className={styles.background} id="LanBackground">
         <div className={styles.modal} id="languageModal">
-          <LanguageModal handleChange={handleChange} />
+          <LanguageModal ChangingClass={handleChange} />
         </div>
       </div>
       <div className={styles.background} id="LevBackground">
@@ -32,17 +36,31 @@ const Step02 = ({
       <section className={styles.graySection}>
         <div className={styles.margin}>
           <h1 className={styles.title}>1. 강의 종류를 선택해주세요.</h1>
-          <div className={styles.classType}>
-            <SquareButton category={"강의 종류"} element={"개발"} />
-            <SquareButton
-              id="languageBtn"
-              category={"언어"}
-              element={form.language}
-              showModal={showModal}
-            />
-            <DeleteBtn /> {/* 수정 예정 */}
-          </div>
-          <AddBtn />
+          {form.language.length > 0 &&
+            form.language.map((e, i) => {
+              return (
+                <>
+                  <div className={styles.classType}>
+                    <SquareButton category={"강의 종류"} element={"개발"} />
+                    <SquareButton
+                      category={"언어"}
+                      element={form.language[i]}
+                      showModal={() => showModal(i)}
+                    />
+                    {form.language.length == 1 ? (
+                      <div className={style2.temp} />
+                    ) : (
+                      <DeleteBtn DeleteClasses={() => DeletingClass(i)} />
+                    )}
+                  </div>
+                  {i == form.language.length - 1 ? (
+                    <AddBtn AddClasses={AddingClass} />
+                  ) : (
+                    <></>
+                  )}
+                </>
+              );
+            })}
         </div>
         <div className={styles.margin}>
           <h1 className={styles.title}>2. 강의 난이도를 선택해주세요.</h1>
@@ -63,10 +81,7 @@ const Step02 = ({
             <li>강의 예시화면 - gif 등록 가능(00mb 이하)</li>
           </ul>
         </div>
-        <Quill 
-          className={styles.quillEditor} 
-          handleChange={handleChange}
-        />
+        <Quill handleChange={handleChange} />
       </section>
       <BottomSection text={"다음"} onClick={nextStep} />
     </div>
