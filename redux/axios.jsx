@@ -27,6 +27,18 @@ export const ClassReg = async (form) => {
     default:
       level = "BASIC";
   }
+
+  function Sub(language) {
+    this.krSubject = language;
+    this.parent = "1";
+  }
+
+  let languageArray = [];
+  form.language.map((e, i) => {
+    let languageObject = new Sub(form.language[i]);
+    languageArray.push(languageObject);
+  });
+
   const data = {
     content: form.content, //form.content
     difficulty: level,
@@ -55,13 +67,7 @@ export const ClassReg = async (form) => {
           },
     ],
     subTitle: form.subheading,
-    subjects: [
-      {
-        enSubject: form.language, //???
-        krSubject: form.language, //???
-        parent: "1",
-      },
-    ],
+    subjects: languageArray,
     systems: [form.online == "on" ? "ONLINE" : "OFFLINE"],
     thumbnailUrl: form.image,
     title: form.maintitle,
