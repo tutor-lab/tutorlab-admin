@@ -1,0 +1,31 @@
+.container {
+  height: 200px;
+  width: 330px;
+  color: #e32121;
+  .containerCropper {
+    width: 100%;
+    height: 90%;
+    padding: 10px;
+    .cropper {
+      border: 3px solid #e32121;
+      width: 100%;
+      height: 90%;
+      position: relative;
+    }
+
+    .slider {
+      height: 10%;
+      display: flex;
+      align-items: center;
+      margin: auto;
+      width: 60%;
+    }
+  }
+  .containerButtons {
+    color: #e32121;
+    height: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
