@@ -19,6 +19,8 @@ export default function ImageTest(handleChange) {
   const [croppedArea, setCroppedArea] = React.useState(null);
   const [crop, setCrop] = React.useState({ x: 0, y: 0 });
   const [zoom, setZoom] = React.useState(1);
+  const [fileName,setFileName] = React.useState("")
+  const [imgType,setImgType] = React.useState("")
 
   const onCropComplete = (croppedAreaPercentage, croppedAreaPixels) => {
     setCroppedArea(croppedAreaPixels);
@@ -31,7 +33,8 @@ export default function ImageTest(handleChange) {
       reader.addEventListener("load", () => {
         setImage(reader.result);
       });
-      console.log("image" + image);
+      setFileName(event.target.files[0].name)
+      setImgType(event.target.files[0].type)
     }
   };
 
@@ -127,25 +130,25 @@ export default function ImageTest(handleChange) {
             const testurl = await onDownload();
             // console.log(testurl);
             const file = DataURIToBlob(testurl);
-            // const file = blobToFile(testurl, "mytest.jpg");
-            const file2 = blobToFile(file, "name.png");
-            var file3 = new File([testurl], "name.png", { type: "image/png" });
-            console.log(file3);
-
-            // console.log(testurl); //multipart로 바꿔서 넣기
-            // const buffer = Buffer.from(testurl, "base64");
-            // console.log(buffer); //multipart로 바꿔서 넣기
-            formData.append("file", file);
-            console.log(formData);
-            let resImg = axios
-              .post("/uploads/images", formData)
-              .then((response) => {
-                setPreview(response.data.url);
-                return response.data.url;
-              })
-              .catch((e) => {
-                console.log(e);
-              });
+            console.log("file==",file)
+            var file3 = new File([file], fileName, { type: imgType });
+            console.log(file3)
+            formData.append("file", file3);
+            setTimeout(function() {
+              
+              console.log(formData);
+              let resImg = axios
+                .post("/uploads/images", formData)
+                .then((response) => {
+                  console.log(response.data.url)
+                  setPreview(response.data.url);
+                  return response.data.url;
+                })
+                .catch((e) => {
+                  console.log(e);
+                });
+            }, 500);
+            
           }}
         >
           확인
