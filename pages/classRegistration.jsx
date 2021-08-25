@@ -25,6 +25,7 @@ const ClassRegistration = () => {
     form: update.update,
   }));
   const step = form.step;
+
   const onChange = (name) => async (e) => {
     let value = e.target.value;
     switch (name) {
@@ -38,8 +39,9 @@ const ClassRegistration = () => {
         value = e.target.value;
         break;
       case "image":
-        const previewImg = await ImagePreview(e);
-        value = previewImg;
+        console.log("image입니다.");
+        // const previewImg = await ImagePreview(e);
+        // value = previewImg;
         break;
       case "language":
         const selected = radiobox(1);
@@ -243,6 +245,17 @@ const ClassRegistration = () => {
   }, [dispatch]);
 
   switch (step) {
+    case 0:
+      return (
+        <Step03
+          type="update"
+          form={form}
+          prevStep={Prev}
+          handleChange={onChange}
+          handleSubmit={onSubmit}
+          MoveStep={RandomMove}
+        />
+      );
     case 1:
       return (
         <Step01
