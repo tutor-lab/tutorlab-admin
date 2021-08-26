@@ -38,11 +38,6 @@ const ClassRegistration = () => {
         TextLimit(e, 25);
         value = e.target.value;
         break;
-      case "image":
-        console.log("image입니다.");
-        // const previewImg = await ImagePreview(e);
-        // value = previewImg;
-        break;
       case "language":
         const selected = radiobox(1);
         value = selected;
@@ -134,26 +129,6 @@ const ClassRegistration = () => {
   const RandomMove = (step) => {
     //1,2,3단계 버튼 눌렀을 때 페이지 이동하도록
     dispatch(MoveStep(step));
-  };
-
-  const ImagePreview = (e) => {
-    //이미지 프리뷰
-    let resImg = "";
-    if (e.target.files[0]) {
-      // reader.readAsDataURL(e.target.files[0]);
-      const formData = new FormData();
-      formData.append("file", e.target.files[0]);
-      resImg = axios
-        .post("/uploads/images", formData)
-        .then((response) => {
-          setPreview(response.data.url);
-          return response.data.url;
-        })
-        .catch((e) => {});
-    }
-    console.log("resImg==", resImg);
-    return resImg;
-    // return fileName
   };
 
   const TextLimit = (e, limit) => {
@@ -263,7 +238,6 @@ const ClassRegistration = () => {
           form={form}
           nextStep={Next}
           handleChange={onChange}
-          preview={preview}
           showGray={showGray}
           hideGray={hideGray}
           MoveStep={RandomMove}

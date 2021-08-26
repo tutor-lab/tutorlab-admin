@@ -2,14 +2,12 @@ import styles from "./step01.module.scss";
 import InputBox from "../btn_inputs/InputBox";
 import WhiteSection from "../WhiteSection";
 import BottomSection from "../BottomSection";
-import AddImg from "../btn_inputs/AddImg";
 import { GrayModal } from "../Modal";
-import ImageTest from "./ImageTest";
+import ImageCrop from "../btn_inputs/ImageCrop";
 const Step01 = ({
   form,
   nextStep,
   handleChange,
-  preview,
   showGray,
   hideGray,
   MoveStep,
@@ -27,20 +25,9 @@ const Step01 = ({
           <h3 className={styles.question}>
             1. 강의 소개 메인 이미지를 등록해주세요.
           </h3>
-          <div className={styles.add}>
-            <ImageTest className={styles.test} handleChange={handleChange} />
-          </div>{" "}
-          {/* <label htmlFor="classImg">
-            <AddImg form={form} preview={preview} MoveStep={MoveStep} />
-            <input
-              type="file"
-              id="classImg"
-              src={preview}
-              onChange={handleChange("image")}
-            />
-          </label> */}
+          <ImageCrop className={styles.test} />
         </div>
-        {/* <InputBox
+        <InputBox
           title={"2. 강의 타이틀을 입력해주세요."}
           placeholder={"최대 40자"}
           example={"ex) 금융권 취업을 위한 데이터 분석 및 모델링 "}
@@ -65,7 +52,7 @@ const Step01 = ({
           value={form.introduction}
           onChange={handleChange("introduction")}
           limit={25}
-        /> */}
+        />
       </section>
       <BottomSection text={"다음"} onClick={nextStep} />
     </div>
