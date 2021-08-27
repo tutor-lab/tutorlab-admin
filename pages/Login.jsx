@@ -23,7 +23,9 @@ const LogIn = ({}) => {
 
         axios.post('/login', LoginRequest)
         .then(function (response) {
-            const accessToken = response.data.accessToken.split(" ")[1];
+
+            console.log(response)
+            const accessToken = response.data.split(" ")[1];
             localStorage.setItem('accessToken', accessToken);
             alert("로그인에 성공하였습니다");
             router.push("/myclass");
