@@ -1,6 +1,20 @@
 import styles from "./chatContent.module.scss";
-const ChatContent = () => {
-  return <section className={styles.contentSection}></section>;
+const MyChats = ({ text, time }) => {
+  return (
+    <div className={styles.myChat}>
+      <span className={styles.content}>{text}</span>
+      <span className={styles.time}>{time}</span>
+    </div>
+  );
 };
 
-export default ChatContent;
+const OthersChats = ({ text, time }) => {
+  return (
+    <div className={styles.otherChat}>
+      <span className={styles.content}>{text}</span>
+      <span className={styles.time}>{time}</span>
+    </div>
+  );
+};
+
+export { MyChats, OthersChats };
