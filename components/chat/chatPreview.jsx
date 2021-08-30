@@ -1,8 +1,12 @@
 import styles from "./chatPreview.module.scss";
 import Image from "next/image";
+import router from "next/router";
 const ChatPreview = ({ data }) => {
   return (
-    <section className={styles.previewSection}>
+    <button
+      className={styles.previewSection}
+      onClick={() => router.push("/chat")}
+    >
       <div className={styles.profile}>
         {/* <Image src={data.profile} width="30px" height="30px" alt="프로필" /> */}
       </div>
@@ -11,7 +15,7 @@ const ChatPreview = ({ data }) => {
         <span className={styles.last}>{data.last}</span>
       </div>
       <span className={styles.date}>{data.date}</span>
-    </section>
+    </button>
   );
 };
 export default ChatPreview;
