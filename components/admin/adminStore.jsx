@@ -14,9 +14,7 @@ const AdminStore = ({ authProvider, dataProvider, history }) => {
     reducer(action.type !== USER_LOGOUT ? state : undefined, action);
 
   const saga = function* rootSaga() {
-    yield all(
-      [adminSaga(dataProvider, authProvider)] //.map(fork)
-    );
+    yield all([adminSaga(dataProvider, authProvider)]);
   };
   const sagaMiddleware = createSagaMiddleware();
 

@@ -3,9 +3,11 @@ import jsonServerProvider from "ra-data-json-server";
 import { createHashHistory } from "history";
 import { Provider } from "react-redux";
 import adminStore from "./adminStore";
+import { UserList } from "./users";
 const dataProvider = jsonServerProvider("https://jsonplaceholder.typicode.com");
 const history = createHashHistory();
 const authProvider = () => Promise.resolve();
+
 const ReactAdmin = () => {
   return (
     <Provider
@@ -21,7 +23,7 @@ const ReactAdmin = () => {
         history={history}
         title="My Admin"
       >
-        <Resource name="/users"></Resource>
+        <Resource name="users" list={UserList}></Resource>
       </Admin>
     </Provider>
   );

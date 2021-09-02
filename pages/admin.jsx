@@ -9,8 +9,8 @@ const ReactAdmin = dynamic(
   }
 );
 
-const HomePage = () => {
+const AdminPage = () => {
   return <ReactAdmin />;
 };
 
-export default HomePage;
+export default AdminPage;
