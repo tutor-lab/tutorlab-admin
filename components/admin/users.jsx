@@ -3,7 +3,7 @@ import { useMediaQuery } from "@material-ui/core";
 import { SimpleList, List, Datagrid, EmailField, TextField } from "react-admin";
 import axios from "axios";
 import { useState, useEffect } from "react";
-axios.defaults.baseURL = "http://3.35.255.192:8081";
+axios.defaults.baseURL = "http://3.35.255.192:8081/tutors";
 axios.interceptors.request.use(function (config) {
   const token = localStorage.getItem("accessToken");
   if (token) {
@@ -17,7 +17,7 @@ export const ClassL = (props) => {
   const [res, setRes] = useState(false);
   const GetClass = async () => {
     try {
-      setResponse(await axios.get("/tutors"));
+      setResponse(await axios.get("/mylectures"));
       setRes(true);
       return response;
     } catch (e) {
@@ -32,12 +32,11 @@ export const ClassL = (props) => {
 
   return (
     <List title="All Classes" {...props}>
-      <Datagrid>
-        <TextField source="title" />
-        <TextField source="name" />
-        <TextField source="username" />
-        <EmailField source="email" />
-      </Datagrid>
+      <SimpleList
+        primaryText={(record) => record.name}
+        secondaryText={(record) => record.username}
+        tertiaryText={(record) => record.email}
+      />
     </List>
   );
 };

@@ -5,7 +5,7 @@ import adminStore from "./adminStore";
 import { ClassL } from "./users";
 import simpleRestProvider from "ra-data-simple-rest";
 import { BrowserRouter } from "react-router-dom";
-const dataProvider = simpleRestProvider("http://3.35.255.192:8081/");
+const dataProvider = simpleRestProvider("http://3.35.255.192:8081/tutors");
 const history = createHashHistory();
 const authProvider = () => Promise.resolve();
 
@@ -25,8 +25,7 @@ const ReactAdmin = () => {
           history={history}
           title="My Admin"
         >
-          <Resource name="tutors" list={ClassL} />
-          {/*tutors에서 제대로 받아오는지 확인용*/}
+          <Resource name="mylectures" list={ClassL} />
         </Admin>
       </Provider>
     </BrowserRouter>
